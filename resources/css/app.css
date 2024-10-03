@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--color-antiflash-white);
+}
+
+a {
+  transition: all ease .3s;
+}
+
+:root {
+  --color-bittersweet: #ef6461ff; /* A reddish tone */
+  --color-atomic-tangerine: #ea8c62ff; /* A light orange */
+  --color-earth-yellow: #e4b363ff; /* A yellowish-brown */
+  --color-earth-dark-yellow: #b99046ff; /* A darker yellowish-brown */
+  --color-wheat: #e6cea7ff; /* Light beige or wheat */
+  --color-antiflash-white: #e8e9ebff; /* Very light grey/white */
+  --color-alabaster: #e0dfd5ff; /* A soft grayish-white */
+}
