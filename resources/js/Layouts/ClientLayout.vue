@@ -1,11 +1,15 @@
 <script setup>
   import MainHeader from '../Partial/MainHeader.vue';
+  import Footer from '../Partial/Footer.vue';
 </script>
 
 <template>
   <div class="clientLayout">
     <MainHeader />
-    <slot />
+    <div class="clientLayout__content">
+      <slot />
+    </div>
+    <Footer />
   </div>
 </template>
 
@@ -17,6 +21,7 @@
     padding: 8px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
 
   @media (min-width: 992px) {
