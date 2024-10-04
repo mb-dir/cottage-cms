@@ -5,8 +5,11 @@
 <template>
   <header class="main-header">
     <h1 class="main-header__title">
-      <Link>Chata Drwala</Link>
+      <Link>
+        <img alt="Chata Drwala przekierowanie do strony głównej" class="logo" src="../../../public/photos/chatadrwala.png">
+      </Link>
     </h1>
+
     <nav class="nav">
       <ul class="nav__list">
         <li>
@@ -33,11 +36,16 @@
 </template>
 
 <style>
+
+  .logo {
+    width: 128px;
+  }
+
   .main-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
+    padding-bottom: 20px;
   }
 
   .main-header__title {

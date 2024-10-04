@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed&display=swap');
+
 * {
   box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Sansita Swashed", sans-serif;
+  color: var(--color-earth-dark-yellow);
 }
 
 body {
@@ -11,6 +18,19 @@ body {
 
 a {
   transition: all ease .3s;
+}
+
+.section {
+  padding: 12px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.section__list {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  list-style: disc inside;
 }
 
 :root {

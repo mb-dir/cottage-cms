@@ -11,18 +11,19 @@
     <MainHeader />
     <div class="swiper">
       <swiper-container
+        :autoplay="{delay: 4000}"
         :centered-slides="true"
         :pagination="true"
         :slides-per-view="1"
       >
         <swiper-slide>
-          <div class="swiper__slide"><img alt="" src="https://krytykapolityczna.pl/wp-content/uploads/2023/02/kot.jpg"></div>
+          <div class="swiper__slide"><img alt="" src="https://chatadrwala.pl/assets/produkty_pszczele/m3.webp"></div>
         </swiper-slide>
         <swiper-slide>
-          <div class="swiper__slide"><img alt="" src="https://krytykapolityczna.pl/wp-content/uploads/2023/02/kot.jpg"></div>
+          <div class="swiper__slide"><img alt="" src="https://chatadrwala.pl/assets/produkty_pszczele/m1.webp"></div>
         </swiper-slide>
         <swiper-slide>
-          <div class="swiper__slide"><img alt="" src="https://krytykapolityczna.pl/wp-content/uploads/2023/02/kot.jpg"></div>
+          <div class="swiper__slide"><img alt="" src="https://chatadrwala.pl/assets/produkty_pszczele/p2.webp"></div>
         </swiper-slide>
 
       </swiper-container>
@@ -45,6 +46,11 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 24px;
+    background: white;
+  }
+
+  .clientLayout__content {
+    text-align: center;
   }
 
   .swiper__slide img {
