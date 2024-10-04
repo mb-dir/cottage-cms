@@ -22,7 +22,7 @@
           <Link class="nav__link">Galeria</Link>
         </li>
         <li>
-          <Link class="nav__link">Pszczelarstwo</Link>
+          <Link :class="{'nav__link--active': route().current('beekeeping')}" :href="route('beekeeping')" class="nav__link">Pszczelarstwo</Link>
         </li>
         <li>
           <Link class="nav__link">Kontakt</Link>
