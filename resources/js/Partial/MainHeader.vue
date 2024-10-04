@@ -10,7 +10,7 @@
     <nav class="nav">
       <ul class="nav__list">
         <li>
-          <Link class="nav__link">O nas</Link>
+          <Link :class="{'nav__link--active': route().current('mainpage')}" :href="route('mainpage')" class="nav__link">O nas</Link>
         </li>
         <li>
           <Link class="nav__link">Nasz Domek</Link>
@@ -64,6 +64,10 @@
   .nav__link {
     text-decoration: none;
     color: black;
+  }
+
+  .nav__link--active {
+    color: var(--color-earth-dark-yellow);
   }
 
   .nav__link:hover {
