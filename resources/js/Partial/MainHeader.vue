@@ -16,10 +16,7 @@
           <Link :class="{'nav__link--active': route().current('mainpage')}" :href="route('mainpage')" class="nav__link">O nas</Link>
         </li>
         <li>
-          <Link class="nav__link">Nasz Domek</Link>
-        </li>
-        <li>
-          <Link class="nav__link">Okolica i atrakcje</Link>
+          <Link :class="{'nav__link--active': route().current('atractions')}" :href="route('atractions')" class="nav__link">Okolica i atrakcje</Link>
         </li>
         <li>
           <Link class="nav__link">Galeria</Link>
