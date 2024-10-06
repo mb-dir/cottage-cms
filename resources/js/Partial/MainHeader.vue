@@ -19,7 +19,7 @@
           <Link :class="{'nav__link--active': route().current('atractions')}" :href="route('atractions')" class="nav__link">Okolica i atrakcje</Link>
         </li>
         <li>
-          <Link class="nav__link">Galeria</Link>
+          <Link :class="{'nav__link--active': route().current('gallery')}" :href="route('gallery')" class="nav__link">Galeria</Link>
         </li>
         <li>
           <Link :class="{'nav__link--active': route().current('beekeeping')}" :href="route('beekeeping')" class="nav__link">Pszczelarstwo</Link>

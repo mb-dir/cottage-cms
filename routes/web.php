@@ -16,4 +16,8 @@ Route::get('/pszczelarstwo', function () {
     return Inertia::render('Client/Beekeeping');
 })->name('beekeeping');
 
+Route::get('/galeria', function () {
+    return Inertia::render('Client/Gallery');
+})->name('gallery');
+
 require __DIR__ . '/auth.php';

@@ -18,6 +18,7 @@
         "vue": "^3.4.0"
     },
     "dependencies": {
-        "swiper": "^11.1.14"
+        "swiper": "^11.1.14",
+        "vue-easy-lightbox": "^1.19.0"
     }
 }
