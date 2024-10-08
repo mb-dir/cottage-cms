@@ -20,4 +20,8 @@ Route::get('/galeria', function () {
     return Inertia::render('Client/Gallery');
 })->name('gallery');
 
+Route::get('/admin/dashboard', function () {
+    return Inertia::render('Admin/Dashboard');
+})->name('dashboard')->middleware('auth');
+
 require __DIR__ . '/auth.php';
