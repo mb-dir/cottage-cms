@@ -46,7 +46,7 @@
   .adminLayout__main {
     display: grid;
     grid-template-columns: 200px 1fr;
-    height: calc(100vh - 70px);
+    min-height: calc(100vh - 70px);
   }
 
   .adminLayout__nav {
