@@ -5,13 +5,15 @@
 <template>
   <div class="adminLayout">
     <header class="adminLayout__header">
-      <h1>Admin panel</h1>
+      <h1>
+        <Link :href="route('dashboard')">Admin panel</Link>
+      </h1>
     </header>
     <div class="adminLayout__main">
       <nav class="adminLayout__nav">
         <ul>
           <li>
-            <Link>Zdjęcia</Link>
+            <Link :class="{'active': route().current('photo.index')}" :href="route('photo.index')">Zdjęcia</Link>
           </li>
         </ul>
       </nav>
@@ -52,6 +54,10 @@
     display: flex;
     justify-content: center;
     padding: 12px;
+  }
+
+  .adminLayout__nav .active {
+    font-weight: bold;
   }
 
   .adminLayout__nav ul {

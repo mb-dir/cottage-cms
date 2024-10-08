@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PhotoController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -20,8 +21,15 @@ Route::get('/galeria', function () {
     return Inertia::render('Client/Gallery');
 })->name('gallery');
 
-Route::get('/admin/dashboard', function () {
-    return Inertia::render('Admin/Dashboard');
-})->name('dashboard')->middleware('auth');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return Inertia::render('Admin/Dashboard');
+    })->name('dashboard');
+
+    Route::get('admin/photo', [PhotoController::class, 'index'])->name('photo.index');
+    Route::post('admin/photo', [PhotoController::class, 'create'])->name('photo.create');
+});
+
 
 require __DIR__ . '/auth.php';
