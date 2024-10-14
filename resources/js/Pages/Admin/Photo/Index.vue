@@ -15,7 +15,7 @@
   const fileInputRef = ref(null);
 
   function onSubmit() {
-    form.post(route('photo.create'), {
+    form.post(route('admin.photo.store'), {
       onSuccess: () => {
         form.files = [];
         filePreviews.length = 0;

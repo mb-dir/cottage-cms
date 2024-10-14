@@ -39,8 +39,8 @@ class DatabaseSeeder extends Seeder
 
         Page::factory()->create([
             'name' => 'Galeria',
-            'route_admin_name' => 'admin.photo.index',
-            'route_client_name' => 'client.photo.index',
+            'route_admin_name' => 'admin.gallery.index',
+            'route_client_name' => 'client.gallery.index',
         ]);
 
         Page::factory()->create([

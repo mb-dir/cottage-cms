@@ -21,7 +21,7 @@ Route::middleware(LogoutIfAuthenticated::class)->group(function () {
 
     Route::get('/galeria', function () {
         return Inertia::render('Client/Gallery');
-    })->name('client.photo.index');
+    })->name('client.gallery.index');
 
     Route::get('/kontakt', function () {
         return Inertia::render('Client/Contact');
@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/manageable/gallery', function () {
         return Inertia::render('Admin/ManageablePages/Gallery');
-    })->name('admin.photo.index');
+    })->name('admin.gallery.index');
 
     Route::get('/admin/manageable/contact', function () {
         return Inertia::render('Admin/ManageablePages/Contact');
