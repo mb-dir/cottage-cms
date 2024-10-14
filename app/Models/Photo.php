@@ -13,7 +13,7 @@ class Photo extends Model
     use HasFactory;
 
 
-    protected $fillable = ['src'];
+    protected $fillable = ['src', 'is_gallery'];
 
 
     public function getSrcAttribute($value)

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Middleware\LogoutIfAuthenticated;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/photo', [PhotoController::class, 'index'])->name('admin.photo.index');
     Route::post('admin/photo', [PhotoController::class, 'create'])->name('admin.photo.store');
 
+    Route::put('admin/gallery', [GalleryController::class, 'update'])->name('admin.gallery.update');
+
     Route::get('/admin/manageable/main-page', function () {
         return Inertia::render('Admin/ManageablePages/MainPage');
     })->name('admin.about.index');
@@ -48,9 +51,9 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('Admin/ManageablePages/Beekeeping');
     })->name('admin.beekeeping.index');
 
-    Route::get('/admin/manageable/gallery', function () {
-        return Inertia::render('Admin/ManageablePages/Gallery');
-    })->name('admin.gallery.index');
+    Route::get('/admin/manageable/gallery', [
+        GalleryController::class, 'index',
+    ])->name('admin.gallery.index');
 
     Route::get('/admin/manageable/contact', function () {
         return Inertia::render('Admin/ManageablePages/Contact');
