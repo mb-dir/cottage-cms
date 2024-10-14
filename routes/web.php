@@ -7,19 +7,23 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Client/MainPage');
-})->name('mainpage');
+})->name('client.about.index');
 
 Route::get('/okolica-i-atrakcje', function () {
     return Inertia::render('Client/Atractions');
-})->name('atractions');
+})->name('client.attractions.index');
 
 Route::get('/pszczelarstwo', function () {
     return Inertia::render('Client/Beekeeping');
-})->name('beekeeping');
+})->name('client.beekeeping.index');
 
 Route::get('/galeria', function () {
     return Inertia::render('Client/Gallery');
-})->name('gallery');
+})->name('client.photo.index');
+
+Route::get('/kontakt', function () {
+    return Inertia::render('Client/Contact');
+})->name('client.contact.index');
 
 
 Route::middleware('auth')->group(function () {

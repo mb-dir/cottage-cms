@@ -2,8 +2,12 @@
 
 namespace App\Http\Middleware;
 
+
+use App\Facades\MenuFacade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
+
 
 class HandleInertiaRequests extends Middleware
 {
@@ -14,13 +18,6 @@ class HandleInertiaRequests extends Middleware
      */
     protected $rootView = 'app';
 
-    /**
-     * Determine the current asset version.
-     */
-    public function version(Request $request): ?string
-    {
-        return parent::version($request);
-    }
 
     /**
      * Define the props that are shared by default.
@@ -29,11 +26,22 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+
         return [
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
             ],
+            'menu' => Auth::user() ? MenuFacade::getAdminMenu() : MenuFacade::getClientMenu(),
         ];
+    }
+
+
+    /**
+     * Determine the current asset version.
+     */
+    public function version(Request $request): ?string
+    {
+        return parent::version($request);
     }
 }

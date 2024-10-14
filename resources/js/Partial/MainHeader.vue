@@ -1,5 +1,10 @@
 <script setup>
-  import { Link } from '@inertiajs/vue3';
+  import { Link, usePage } from '@inertiajs/vue3';
+  import MainMenu from './MainMenu.vue';
+
+  const page = usePage();
+  const menu = page.props.menu;
+
 </script>
 
 <template>
@@ -10,25 +15,7 @@
       </Link>
     </h1>
 
-    <nav class="nav">
-      <ul class="nav__list">
-        <li>
-          <Link :class="{'nav__link--active': route().current('mainpage')}" :href="route('mainpage')" class="nav__link">O nas</Link>
-        </li>
-        <li>
-          <Link :class="{'nav__link--active': route().current('atractions')}" :href="route('atractions')" class="nav__link">Okolica i atrakcje</Link>
-        </li>
-        <li>
-          <Link :class="{'nav__link--active': route().current('gallery')}" :href="route('gallery')" class="nav__link">Galeria</Link>
-        </li>
-        <li>
-          <Link :class="{'nav__link--active': route().current('beekeeping')}" :href="route('beekeeping')" class="nav__link">Pszczelarstwo</Link>
-        </li>
-        <li>
-          <Link class="nav__link">Kontakt</Link>
-        </li>
-      </ul>
-    </nav>
+    <MainMenu :menu />
   </header>
 </template>
 
@@ -52,30 +39,5 @@
   .main-header__title a {
     text-decoration: none;
     color: var(--color-earth-dark-yellow);
-  }
-
-  .nav {
-    display: flex;
-  }
-
-  .nav__list {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-    display: flex;
-    gap: 12px;
-  }
-
-  .nav__link {
-    text-decoration: none;
-    color: black;
-  }
-
-  .nav__link--active {
-    color: var(--color-earth-dark-yellow);
-  }
-
-  .nav__link:hover {
-    color: var(--color-atomic-tangerine);
   }
 </style>
