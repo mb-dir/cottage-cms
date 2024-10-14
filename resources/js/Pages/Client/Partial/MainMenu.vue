@@ -1,9 +1,9 @@
 <script setup>
-  import { Link } from '@inertiajs/vue3';
+  import { Link, usePage } from '@inertiajs/vue3';
 
-  defineProps({
-    menu: { required: true, type: Array },
-  });
+  const page = usePage();
+  const menu = page.props.client_menu;
+
 </script>
 
 <template>

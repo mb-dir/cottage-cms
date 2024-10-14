@@ -1,10 +1,5 @@
 <script setup>
-  import { usePage } from '@inertiajs/vue3';
   import MainMenu from './MainMenu.vue';
-
-  const page = usePage();
-  const menu = page.props.menu;
-
 </script>
 
 <template>
@@ -13,7 +8,7 @@
       <img alt="Chata Drwala przekierowanie do strony głównej" class="logo" src="../../../../../public/photos/chatadrwala.png">
     </h1>
 
-    <MainMenu :menu />
+    <MainMenu />
   </header>
 </template>
 

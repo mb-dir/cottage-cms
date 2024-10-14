@@ -32,7 +32,8 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
-            'menu' => Auth::user() ? MenuFacade::getAdminMenu() : MenuFacade::getClientMenu(),
+            'admin_menu' => Auth::user() ? MenuFacade::getAdminMenu() : null,
+            'client_menu' => MenuFacade::getClientMenu(),
         ];
     }
 

@@ -2,7 +2,7 @@
   import { usePage, Link } from '@inertiajs/vue3';
 
   const page = usePage();
-  const menu = page.props.menu;
+  const menu = page.props.admin_menu;
 </script>
 
 <template>

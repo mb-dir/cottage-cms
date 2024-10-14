@@ -1,30 +1,32 @@
 <?php
 
 use App\Http\Controllers\PhotoController;
+use App\Http\Middleware\LogoutIfAuthenticated;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
-Route::get('/', function () {
-    return Inertia::render('Client/MainPage');
-})->name('client.about.index');
+Route::middleware(LogoutIfAuthenticated::class)->group(function () {
+    Route::get('/', function () {
+        return Inertia::render('Client/MainPage');
+    })->name('client.about.index');
 
-Route::get('/okolica-i-atrakcje', function () {
-    return Inertia::render('Client/Attractions');
-})->name('client.attractions.index');
+    Route::get('/okolica-i-atrakcje', function () {
+        return Inertia::render('Client/Attractions');
+    })->name('client.attractions.index');
 
-Route::get('/pszczelarstwo', function () {
-    return Inertia::render('Client/Beekeeping');
-})->name('client.beekeeping.index');
+    Route::get('/pszczelarstwo', function () {
+        return Inertia::render('Client/Beekeeping');
+    })->name('client.beekeeping.index');
 
-Route::get('/galeria', function () {
-    return Inertia::render('Client/Gallery');
-})->name('client.photo.index');
+    Route::get('/galeria', function () {
+        return Inertia::render('Client/Gallery');
+    })->name('client.photo.index');
 
-Route::get('/kontakt', function () {
-    return Inertia::render('Client/Contact');
-})->name('client.contact.index');
-
+    Route::get('/kontakt', function () {
+        return Inertia::render('Client/Contact');
+    })->name('client.contact.index');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', function () {
