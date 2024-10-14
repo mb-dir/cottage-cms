@@ -1,5 +1,5 @@
 <script setup>
-  import { Link, usePage } from '@inertiajs/vue3';
+  import { usePage } from '@inertiajs/vue3';
   import MainMenu from './MainMenu.vue';
 
   const page = usePage();
@@ -10,9 +10,7 @@
 <template>
   <header class="main-header">
     <h1 class="main-header__title">
-      <Link>
-        <img alt="Chata Drwala przekierowanie do strony głównej" class="logo" src="../../../public/photos/chatadrwala.png">
-      </Link>
+      <img alt="Chata Drwala przekierowanie do strony głównej" class="logo" src="../../../public/photos/chatadrwala.png">
     </h1>
 
     <MainMenu :menu />

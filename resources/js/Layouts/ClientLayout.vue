@@ -17,15 +17,17 @@
         :slides-per-view="1"
       >
         <swiper-slide>
-          <div class="swiper__slide"><img alt="" src="https://chatadrwala.pl/assets/produkty_pszczele/m3.webp"></div>
+          <div class="swiper__slide">
+            <img alt="" src="https://chatadrwala.pl/assets/produkty_pszczele/m3.webp"></div>
         </swiper-slide>
         <swiper-slide>
-          <div class="swiper__slide"><img alt="" src="https://chatadrwala.pl/assets/produkty_pszczele/m1.webp"></div>
+          <div class="swiper__slide">
+            <img alt="" src="https://chatadrwala.pl/assets/produkty_pszczele/m1.webp"></div>
         </swiper-slide>
         <swiper-slide>
-          <div class="swiper__slide"><img alt="" src="https://chatadrwala.pl/assets/produkty_pszczele/p2.webp"></div>
+          <div class="swiper__slide">
+            <img alt="" src="https://chatadrwala.pl/assets/produkty_pszczele/p2.webp"></div>
         </swiper-slide>
-
       </swiper-container>
     </div>
 
