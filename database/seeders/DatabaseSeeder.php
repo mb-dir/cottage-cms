@@ -34,8 +34,7 @@ class DatabaseSeeder extends Seeder
         Page::factory()->create([
             'name' => 'Okolica i atrakcje',
             'route_admin_name' => 'admin.attractions.index',
-            'route_client_name' => null,
-            'is_section' => true,
+            'route_client_name' => 'client.attractions.index',
         ]);
 
         Page::factory()->create([

@@ -15,8 +15,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('route_admin_name');
-            $table->string('route_client_name')->nullable();
-            $table->boolean('is_section')->default(false);
+            $table->string('route_client_name');
             $table->timestamps();
         });
     }
