@@ -1,7 +1,7 @@
 <script setup>
   import { register } from 'swiper/element/bundle';
-  import MainHeader from '../Partial/MainHeader.vue';
-  import Footer from '../Partial/Footer.vue';
+  import MainHeader from '../Pages/Client/Partial/MainHeader.vue';
+  import Footer from '../Pages/Client/Partial/Footer.vue';
 
   register();
 </script>

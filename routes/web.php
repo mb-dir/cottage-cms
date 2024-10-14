@@ -10,7 +10,7 @@ Route::get('/', function () {
 })->name('client.about.index');
 
 Route::get('/okolica-i-atrakcje', function () {
-    return Inertia::render('Client/Atractions');
+    return Inertia::render('Client/Attractions');
 })->name('client.attractions.index');
 
 Route::get('/pszczelarstwo', function () {
@@ -29,10 +29,30 @@ Route::get('/kontakt', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', function () {
         return Inertia::render('Admin/Dashboard');
-    })->name('dashboard');
+    })->name('admin.dashboard');
 
-    Route::get('admin/photo', [PhotoController::class, 'index'])->name('photo.index');
-    Route::post('admin/photo', [PhotoController::class, 'create'])->name('photo.create');
+    Route::get('admin/photo', [PhotoController::class, 'index'])->name('admin.photo.index');
+    Route::post('admin/photo', [PhotoController::class, 'create'])->name('admin.photo.store');
+
+    Route::get('/admin/manageable/main-page', function () {
+        return Inertia::render('Admin/ManageablePages/MainPage');
+    })->name('admin.about.index');
+
+    Route::get('/admin/manageable/attractions', function () {
+        return Inertia::render('Admin/ManageablePages/Attractions');
+    })->name('admin.attractions.index');
+
+    Route::get('/admin/manageable/beekeeping', function () {
+        return Inertia::render('Admin/ManageablePages/Beekeeping');
+    })->name('admin.beekeeping.index');
+
+    Route::get('/admin/manageable/gallery', function () {
+        return Inertia::render('Admin/ManageablePages/Gallery');
+    })->name('admin.photo.index');
+
+    Route::get('/admin/manageable/contact', function () {
+        return Inertia::render('Admin/ManageablePages/Contact');
+    })->name('admin.contact.index');
 });
 
 

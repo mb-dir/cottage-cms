@@ -1,22 +1,17 @@
 <script setup>
   import { Link } from '@inertiajs/vue3';
+  import AdminMenu from '../Pages/Admin/Partial/AdminMenu.vue';
 </script>
 
 <template>
   <div class="adminLayout">
     <header class="adminLayout__header">
       <h1>
-        <Link :href="route('dashboard')">Admin panel</Link>
+        <Link :href="route('admin.dashboard')">Admin panel</Link>
       </h1>
     </header>
     <div class="adminLayout__main">
-      <nav class="adminLayout__nav">
-        <ul>
-          <li>
-            <Link :class="{'active': route().current('photo.index')}" :href="route('photo.index')">Zdjęcia</Link>
-          </li>
-        </ul>
-      </nav>
+      <AdminMenu />
 
       <div class="adminLayout__content">
         <slot />
@@ -47,17 +42,6 @@
     display: grid;
     grid-template-columns: 200px 1fr;
     min-height: calc(100vh - 70px);
-  }
-
-  .adminLayout__nav {
-    border-right: 1px solid white;
-    display: flex;
-    justify-content: center;
-    padding: 12px;
-  }
-
-  .adminLayout__nav .active {
-    font-weight: bold;
   }
 
   .adminLayout__nav ul {

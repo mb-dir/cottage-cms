@@ -10,7 +10,7 @@
 <template>
   <header class="main-header">
     <h1 class="main-header__title">
-      <img alt="Chata Drwala przekierowanie do strony głównej" class="logo" src="../../../public/photos/chatadrwala.png">
+      <img alt="Chata Drwala przekierowanie do strony głównej" class="logo" src="../../../../../public/photos/chatadrwala.png">
     </h1>
 
     <MainMenu :menu />
