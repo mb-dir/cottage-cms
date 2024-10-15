@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\PhotoController;
+use App\Http\Controllers\Client\GalleryController as ClientGalleryController;
 use App\Http\Middleware\LogoutIfAuthenticated;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -20,9 +21,7 @@ Route::middleware(LogoutIfAuthenticated::class)->group(function () {
         return Inertia::render('Client/Beekeeping');
     })->name('client.beekeeping.index');
 
-    Route::get('/galeria', function () {
-        return Inertia::render('Client/Gallery');
-    })->name('client.gallery.index');
+    Route::get('/galeria', [ClientGalleryController::class, 'index'])->name('client.gallery.index');
 
     Route::get('/kontakt', function () {
         return Inertia::render('Client/Contact');

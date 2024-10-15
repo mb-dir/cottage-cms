@@ -3,10 +3,13 @@
   import ClientLayout from '../../Layouts/ClientLayout.vue';
   import VueEasyLightbox from 'vue-easy-lightbox';
 
+  const props = defineProps({
+    photos: { required: true, type: Object },
+  });
+
   const visibleRef = ref(false);
   const indexRef = ref(0); // default 0
   const activeImgsRef = ref([]);
-  const imgs = ['http://via.placeholder.com/350x150', 'http://via.placeholder.com/250x150', 'http://via.placeholder.com/350x250', 'http://via.placeholder.com/350x150', 'http://via.placeholder.com/150x100', 'http://via.placeholder.com/250x150', 'http://via.placeholder.com/350x250', 'http://via.placeholder.com/350x150'];
 
   // Function to show the lightbox
   const onShow = () => {
@@ -15,7 +18,7 @@
 
   // Show multiple images
   const showMultiple = (index) => {
-    activeImgsRef.value = imgs;
+    activeImgsRef.value = props.photos;
     indexRef.value = index;
     onShow();
   };
@@ -36,11 +39,11 @@
         @hide="onHide"
       ></vue-easy-lightbox>
     </div>
-    <div class="image-grid">
+    <div v-if="props.photos?.length" class="image-grid">
       <img
-        v-for="(photo, index) in imgs"
+        v-for="(photo, index) in props.photos"
         :key="index"
-        :src="photo"
+        :src="photo.src"
         alt="Image"
         class="image-item"
         @click="showMultiple(index)"
