@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('admin/photo', [PhotoController::class, 'index'])->name('admin.photo.index');
     Route::post('admin/photo', [PhotoController::class, 'create'])->name('admin.photo.store');
+    Route::delete('admin/photo/{photo}', [PhotoController::class, 'destroy'])->name('admin.photo.destroy');
 
     Route::put('admin/gallery', [GalleryController::class, 'update'])->name('admin.gallery.update');
 

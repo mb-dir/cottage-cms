@@ -36,6 +36,14 @@ class PhotoController extends Controller
     }
 
 
+    public function destroy(Photo $photo)
+    {
+        $photo->delete();
+
+        return redirect()->back()->with("message", "Wystąpił błąd");
+    }
+
+
     public function index()
     {
         $photos = Photo::all();

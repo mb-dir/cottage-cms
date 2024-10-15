@@ -1,6 +1,6 @@
 <script setup>
   import AdminLayout from '../../../Layouts/AdminLayout.vue';
-  import { useForm } from '@inertiajs/vue3';
+  import { useForm, router } from '@inertiajs/vue3';
   import { ref, reactive } from 'vue';
 
   const props = defineProps({
@@ -52,6 +52,12 @@
     fileInputRef.value.files = dataTransfer.files;
     form.files = dataTransfer.files;
   }
+
+  function onPhotoDelete(photo) {
+    if (confirm('Czy jesteś pewnien?')) {
+      router.delete(route('admin.photo.destroy', { photo }));
+    }
+  }
 </script>
 
 <template>
@@ -71,7 +77,10 @@
 
     <!-- Existing photos already stored -->
     <div v-if="photos?.length" class="photos">
-      <img v-for="photo in photos" :alt="photo.src" :src="photo.src">
+      <div v-for="photo in photos" class="photos__photo">
+        <button class="photos__delete" @click="onPhotoDelete(photo)">X</button>
+        <img :alt="photo.src" :src="photo.src">
+      </div>
     </div>
   </AdminLayout>
 </template>
@@ -89,6 +98,18 @@
     width: 100%;
     object-fit: cover;
     height: 200px;
+  }
+
+  .photos__photo {
+    position: relative;
+  }
+
+  .photos__delete {
+    font-weight: bold;
+    color: red;
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
 
   .photos-preview {
