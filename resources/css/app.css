@@ -9,7 +9,12 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-earth-dark-yellow);
 }
 
-.adminLayout h1, h2, h3, h4, h5, h6 {
+.adminLayout h1,
+.adminLayout h2,
+.adminLayout h3,
+.adminLayout h4,
+.adminLayout h5,
+.adminLayout h6 {
   color: white;
   font-family: sans-serif;
 }

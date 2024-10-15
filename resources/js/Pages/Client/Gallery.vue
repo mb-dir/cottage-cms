@@ -39,16 +39,20 @@
         @hide="onHide"
       ></vue-easy-lightbox>
     </div>
-    <div v-if="props.photos?.length" class="image-grid">
-      <img
-        v-for="(photo, index) in props.photos"
-        :key="index"
-        :src="photo.src"
-        alt="Image"
-        class="image-item"
-        @click="showMultiple(index)"
-      />
-    </div>
+    <section>
+      <h2>Zdjęcia domku</h2>
+      <div v-if="props.photos?.length" class="image-grid">
+        <img
+          v-for="(photo, index) in props.photos"
+          :key="index"
+          :src="photo.src"
+          alt="Image"
+          class="image-item"
+          @click="showMultiple(index)"
+        />
+      </div>
+    </section>
+
   </ClientLayout>
 </template>
 
