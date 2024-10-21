@@ -13,4 +13,10 @@ class Page extends Model
 
 
     protected $fillable = ['name', 'route_admin_name', 'route_client_name'];
+
+
+    public function gallery()
+    {
+        return $this->hasMany(GallerySection::class);
+    }
 }
