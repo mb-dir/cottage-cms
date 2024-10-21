@@ -10,7 +10,7 @@ class MenuService
 {
     public function getAdminMenu()
     {
-        return Page::all(['name', 'route_admin_name']);
+        return Page::all();
     }
 
 

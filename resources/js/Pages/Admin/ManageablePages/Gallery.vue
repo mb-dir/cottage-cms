@@ -1,64 +1,43 @@
 <script setup>
   import AdminLayout from '../../../Layouts/AdminLayout.vue';
-  import { useForm } from '@inertiajs/vue3';
+  import { useForm, usePage } from '@inertiajs/vue3';
+  import { computed } from 'vue';
 
-  const props = defineProps({
+  defineProps({
     photos: { required: true, type: Array },
   });
 
-  // Bind the selected photo IDs
+  const adminMenu = usePage().props.admin_menu;
+
+  const currentPageId = computed(() => {
+    const foundItem = adminMenu.find((item) => item.route_admin_name === 'admin.gallery.index');
+    return foundItem ? foundItem.id : null;
+  });
+
   const form = useForm({
-    photos: props.photos.filter(photo => photo.is_gallery).map(photo => photo.id), // Only store IDs
+    title: '',
+    content: '',
+    page_id: currentPageId.value,
   });
 
   function onSubmit() {
-    form.put(route('admin.gallery.update'));
+    form.post(route('admin.gallery-section.store'));
   }
+
 </script>
 
 <template>
   <AdminLayout>
-    <h2>Wybierz zdjęcia które mają pojawić się w galerii</h2>
+    <h2>Dodaj sekcje galerii</h2>
 
-    <div class="gallery">
-      <form v-if="photos?.length > 0" @submit.prevent="onSubmit">
-        <div class="gallery__container">
-          <div v-for="photo in photos" :key="photo.id" class="photo">
-            <img :src="photo.src" alt="Zdjęcie">
-            <!-- Bind checkbox to photo ID -->
-            <input v-model="form.photos" :value="photo.id" class="photo__checkbox" type="checkbox">
-          </div>
-        </div>
-        <button>Zapisz</button>
-      </form>
-      <div v-else>Brak zdjęć do wyboru</div>
-    </div>
+    <form @submit.prevent="onSubmit">
+      <input v-model="form.title" placeholder="Tytuł sekcji" type="text">
+      <textarea v-model="form.content" placeholder="Opis sekcji"></textarea>
+      <button>Zapisz</button>
+    </form>
+
   </AdminLayout>
 </template>
 <style scoped>
-  .gallery__container {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(150px, 1fr));
-    grid-template-rows: 200px;
-    gap: 16px;
-    padding: 16px;
-  }
 
-  .gallery__container img {
-    width: 100%;
-    object-fit: cover;
-    height: 200px;
-  }
-
-  .photo {
-    position: relative;
-  }
-
-  .photo__checkbox {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-  }
 </style>

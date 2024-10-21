@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\GallerySectionController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Client\GalleryController as ClientGalleryController;
 use App\Http\Middleware\LogoutIfAuthenticated;
@@ -37,7 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/photo', [PhotoController::class, 'create'])->name('admin.photo.store');
     Route::delete('admin/photo/{photo}', [PhotoController::class, 'destroy'])->name('admin.photo.destroy');
 
-    Route::put('admin/gallery', [GalleryController::class, 'update'])->name('admin.gallery.update');
+    Route::post('admin/gallery-section', [GallerySectionController::class, 'store'])->name('admin.gallery-section.store');
 
     Route::get('/admin/manageable/main-page', function () {
         return Inertia::render('Admin/ManageablePages/MainPage');
