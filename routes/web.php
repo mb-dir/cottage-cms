@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('admin/gallery-section', [GallerySectionController::class, 'store'])->name('admin.gallery-section.store');
     Route::delete('admin/gallery-section/{gallerySection}', [GallerySectionController::class, 'destroy'])->name('admin.gallery-section.destroy');
+    Route::put('admin/gallery-section/{gallerySection}', [GallerySectionController::class, 'update'])->name('admin.gallery-section.update');
 
     Route::get('/admin/manageable/main-page', function () {
         return Inertia::render('Admin/ManageablePages/MainPage');

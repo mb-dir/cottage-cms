@@ -30,4 +30,17 @@ class GallerySectionController extends Controller
 
         return redirect()->back()->with('message', "Się dodało się");
     }
+
+
+    public function update(GallerySection $gallerySection, Request $request)
+    {
+        $validated = $request->validate([
+            'title' => ['string', 'required'],
+            'content' => ['string', 'required'],
+        ]);
+
+        $gallerySection->update($validated);
+
+        return redirect()->back()->with('message', "Się dodało się");
+    }
 }
