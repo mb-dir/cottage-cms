@@ -1,6 +1,7 @@
 <script setup>
   import AdminLayout from '../../../Layouts/AdminLayout.vue';
-  import { useForm, usePage, router } from '@inertiajs/vue3';
+  import GallerySectionCard from '../../../Components/GallerySectionCard.vue';
+  import { useForm, usePage } from '@inertiajs/vue3';
   import { computed } from 'vue';
 
   defineProps({
@@ -23,10 +24,6 @@
 
   function onSubmit() {
     form.post(route('admin.gallery-section.store'));
-  }
-
-  function onSectionDelete(gallerySection) {
-    router.delete(route('admin.gallery-section.destroy', { gallerySection }));
   }
 
 </script>
@@ -54,13 +51,7 @@
     <section class="gallery-sections">
       <h2>Sekcje galerii</h2>
       <div v-if="gallerySections?.length > 0" class="sections-list">
-        <div v-for="section in gallerySections" :key="section.id" class="section-card">
-          <h3>{{ section.title }}</h3>
-          <p>{{ section.content }}</p>
-
-          <button class="edit-button">Edytuj</button>
-          <button class="delete-button" @click="onSectionDelete(section)">Usuń</button>
-        </div>
+        <GallerySectionCard v-for="section in gallerySections" :section />
       </div>
       <div v-else class="no-sections">Brak dodanych sekcji</div>
     </section>
@@ -139,59 +130,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
-  }
-
-  .section-card {
-    padding: 15px;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    transition: box-shadow 0.3s ease;
-  }
-
-  .section-card h3 {
-    margin-bottom: 10px;
-    font-size: 18px;
-  }
-
-  .section-card p {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-
-  .section-card:hover {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .edit-button {
-    background-color: #10b981;
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-  }
-
-  .edit-button:hover {
-    background-color: #059669;
-  }
-
-  .delete-button {
-    background-color: #b91010;
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-  }
-
-  .delete-button:hover {
-    background-color: #e70d0d;
   }
 
   .no-sections {
