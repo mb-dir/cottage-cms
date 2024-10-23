@@ -1,6 +1,6 @@
 <script setup>
   import AdminLayout from '../../../Layouts/AdminLayout.vue';
-  import { useForm, usePage } from '@inertiajs/vue3';
+  import { useForm, usePage, router } from '@inertiajs/vue3';
   import { computed } from 'vue';
 
   defineProps({
@@ -23,6 +23,10 @@
 
   function onSubmit() {
     form.post(route('admin.gallery-section.store'));
+  }
+
+  function onSectionDelete(gallerySection) {
+    router.delete(route('admin.gallery-section.destroy', { gallerySection }));
   }
 
 </script>
@@ -55,7 +59,7 @@
           <p>{{ section.content }}</p>
 
           <button class="edit-button">Edytuj</button>
-          <button class="delete-button">Usuń</button>
+          <button class="delete-button" @click="onSectionDelete(section)">Usuń</button>
         </div>
       </div>
       <div v-else class="no-sections">Brak dodanych sekcji</div>

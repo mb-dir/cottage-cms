@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 
 class GallerySectionController extends Controller
 {
+    public function destroy(GallerySection $gallerySection)
+    {
+        $gallerySection->delete();
+
+        return redirect()->back()->with('message', "Się dodało się sekcja usunięta w pizdu");
+    }
+
+
     public function store(Request $request)
     {
         $validated = $request->validate([

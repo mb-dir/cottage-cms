@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('admin/photo/{photo}', [PhotoController::class, 'destroy'])->name('admin.photo.destroy');
 
     Route::post('admin/gallery-section', [GallerySectionController::class, 'store'])->name('admin.gallery-section.store');
+    Route::delete('admin/gallery-section/{gallerySection}', [GallerySectionController::class, 'destroy'])->name('admin.gallery-section.destroy');
 
     Route::get('/admin/manageable/main-page', function () {
         return Inertia::render('Admin/ManageablePages/MainPage');
