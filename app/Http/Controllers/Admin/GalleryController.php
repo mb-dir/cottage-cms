@@ -14,7 +14,7 @@ class GalleryController extends Controller
     public function index()
     {
         $photos = Photo::all();
-        $gallerySections = GallerySection::all();
+        $gallerySections = GallerySection::all()->load('photos');
 
         return Inertia::render('Admin/ManageablePages/Gallery', compact('photos', 'gallerySections'));
     }

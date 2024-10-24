@@ -37,9 +37,12 @@ class GallerySectionController extends Controller
         $validated = $request->validate([
             'title' => ['string', 'required'],
             'content' => ['string', 'required'],
+            'photos' => ['required', 'array'],
+            'photos.*.id' => ['required', 'integer', 'exists:photos,id'],
         ]);
 
         $gallerySection->update($validated);
+        $gallerySection->photos()->sync(array_column($validated['photos'], 'id'));
 
         return redirect()->back()->with('message', "Się dodało się");
     }

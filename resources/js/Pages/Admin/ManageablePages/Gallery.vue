@@ -51,7 +51,7 @@
     <section class="gallery-sections">
       <h2>Sekcje galerii</h2>
       <div v-if="gallerySections?.length > 0" class="sections-list">
-        <GallerySectionCard v-for="section in gallerySections" :section />
+        <GallerySectionCard v-for="section in gallerySections" :photos :section />
       </div>
       <div v-else class="no-sections">Brak dodanych sekcji</div>
     </section>

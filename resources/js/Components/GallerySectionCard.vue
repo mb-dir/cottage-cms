@@ -3,13 +3,14 @@
   import Modal from './Modal.vue';
   import { ref } from 'vue';
 
-  const props = defineProps({ section: { type: Object, required: true } });
+  const props = defineProps({ section: { type: Object, required: true }, photos: { type: Array, required: true } });
 
   const modal = ref(null);
 
   const form = useForm({
     title: props.section.title,
     content: props.section.content,
+    photos: props.section.photos,
   });
 
   function onSectionDelete(gallerySection) {
@@ -45,6 +46,13 @@
       <div class="form-group">
         <label for="content">Opis sekcji</label>
         <textarea id="content" v-model="form.content" class="textarea-field" placeholder="Opis sekcji"></textarea>
+      </div>
+
+      <div v-if="photos.length > 0" class="photos-grid">
+        <div v-for="photo in photos" class="photo-item">
+          <input v-model="form.photos" :value="photo" class="photo-checkbox" type="checkbox">
+          <img :src="photo.src" alt="" class="photo-img" />
+        </div>
       </div>
 
       <button class="primary-button" type="submit">Zapisz</button>
@@ -156,6 +164,36 @@
 
   .textarea-field {
     min-height: 100px;
+  }
+
+  .photos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 10px; /* Space between photos */
+    padding: 10px; /* Padding around the grid */
+  }
+
+  .photo-item {
+    width: 100%;
+    height: 200px; /* Fixed height for uniformity */
+    overflow: hidden; /* Prevent images from overflowing */
+    border-radius: 8px; /* Rounded corners for the photos */
+    position: relative;
+  }
+
+  .photo-checkbox {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio, cover the container */
+    border-radius: 8px; /* Apply rounded corners to images */
   }
 
 </style>
