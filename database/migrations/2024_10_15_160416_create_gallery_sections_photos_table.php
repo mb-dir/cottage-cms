@@ -14,7 +14,7 @@ return new class extends Migration {
         Schema::create('gallery_sections_photos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('photo_id')->constrained();
-            $table->foreignId('gallery_section_id')->constrained();
+            $table->foreignId('gallery_section_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

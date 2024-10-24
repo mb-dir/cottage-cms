@@ -1,80 +1,18 @@
 <script setup>
-  import { ref } from 'vue';
   import ClientLayout from '../../Layouts/ClientLayout.vue';
-  import VueEasyLightbox from 'vue-easy-lightbox';
+  import GallerySectionRenderer from '../../Components/GallerySectionRenderer.vue';
 
-  const props = defineProps({
-    photos: { required: true, type: Object },
+  defineProps({
+    gallerySections: { required: true, type: Array },
   });
 
-  const visibleRef = ref(false);
-  const indexRef = ref(0); // default 0
-  const activeImgsRef = ref([]);
-
-  // Function to show the lightbox
-  const onShow = () => {
-    visibleRef.value = true;
-  };
-
-  // Show multiple images
-  const showMultiple = (index) => {
-    activeImgsRef.value = props.photos;
-    indexRef.value = index;
-    onShow();
-  };
-
-  // Function to hide the lightbox
-  const onHide = () => {
-    visibleRef.value = false;
-  };
 </script>
 
 <template>
   <ClientLayout>
-    <div>
-      <vue-easy-lightbox
-        :imgs="activeImgsRef"
-        :index="indexRef"
-        :visible="visibleRef"
-        @hide="onHide"
-      ></vue-easy-lightbox>
+    <div v-if="gallerySections.length > 0">
+      <GallerySectionRenderer v-for="section in gallerySections" :section />
     </div>
-    <section>
-      <h2>Zdjęcia domku</h2>
-      <div v-if="props.photos?.length" class="image-grid">
-        <img
-          v-for="(photo, index) in props.photos"
-          :key="index"
-          :src="photo.src"
-          alt="Image"
-          class="image-item"
-          @click="showMultiple(index)"
-        />
-      </div>
-    </section>
-
   </ClientLayout>
 </template>
 
-<style scoped>
-  .image-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(150px, 1fr));
-    gap: 10px;
-    padding: 10px;
-  }
-
-  .image-item {
-    width: 100%;
-    height: auto;
-    cursor: pointer;
-    border: 2px solid #ddd;
-    transition: transform 0.3s ease;
-    max-height: 200px;
-    object-fit: cover;
-  }
-
-  .image-item:hover {
-    transform: scale(1.05);
-  }
-</style>
