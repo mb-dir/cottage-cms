@@ -38,11 +38,9 @@ class PhotoController extends Controller
 
     public function destroy(Photo $photo)
     {
-        if ($photo->delete()) {
-            return redirect()->back()->with("message", "Zdjęcie zostało usunięte");
-        }
+        $photo->delete();
 
-        return redirect()->back()->with("message", "Wystąpił błąd");
+        return redirect()->back()->with("message", "Zdjęcie zostało usunięte");
     }
 
 
