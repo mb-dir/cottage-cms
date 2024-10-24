@@ -1,6 +1,6 @@
 <script setup>
   import AdminLayout from '../../../Layouts/AdminLayout.vue';
-  import GallerySectionCard from '../../../Components/GallerySectionCard.vue';
+  import GallerySectionCard from '../../../Components/Sections/Gallery/GallerySectionCard.vue';
   import { useForm, usePage } from '@inertiajs/vue3';
   import { computed } from 'vue';
 

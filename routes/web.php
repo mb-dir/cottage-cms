@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\GalleryController;
-use App\Http\Controllers\Admin\GallerySectionController;
+use App\Http\Controllers\Admin\ManageablePages\GalleryController;
 use App\Http\Controllers\Admin\PhotoController;
+use App\Http\Controllers\Admin\Sections\GallerySectionController;
 use App\Http\Controllers\Client\GalleryController as ClientGalleryController;
 use App\Http\Middleware\LogoutIfAuthenticated;
 use Illuminate\Support\Facades\Route;

@@ -1,6 +1,6 @@
 <script setup>
   import { router, useForm } from '@inertiajs/vue3';
-  import Modal from './Modal.vue';
+  import Modal from '../../UI/Modal.vue';
   import { ref } from 'vue';
 
   const props = defineProps({ section: { type: Object, required: true }, photos: { type: Array, required: true } });
