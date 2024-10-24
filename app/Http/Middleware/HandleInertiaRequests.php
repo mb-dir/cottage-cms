@@ -34,6 +34,8 @@ class HandleInertiaRequests extends Middleware
             ],
             'admin_menu' => Auth::user() ? MenuFacade::getAdminMenu() : null,
             'client_menu' => MenuFacade::getClientMenu(),
+            'errors' => fn() => $request->session()->get('errors') ? $request->session()->get('errors')->getBag('default')->getMessages() : [],
+            'messages' => fn() => $request->session()->get('message') ? collect($request->session()->get('message')) : [],
         ];
     }
 

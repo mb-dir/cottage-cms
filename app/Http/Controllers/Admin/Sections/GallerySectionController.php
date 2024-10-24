@@ -14,7 +14,7 @@ class GallerySectionController extends Controller
     {
         $gallerySection->delete();
 
-        return redirect()->back()->with('message', "Się dodało się sekcja usunięta w pizdu");
+        return redirect()->back()->with('message', "Sekcja została usunięta");
     }
 
 
@@ -28,7 +28,7 @@ class GallerySectionController extends Controller
 
         GallerySection::create($validated);
 
-        return redirect()->back()->with('message', "Się dodało się");
+        return redirect()->back()->with('message', "Nowa sekcja została utworzona");
     }
 
 
@@ -44,6 +44,6 @@ class GallerySectionController extends Controller
         $gallerySection->update($validated);
         $gallerySection->photos()->sync(array_column($validated['photos'], 'id'));
 
-        return redirect()->back()->with('message', "Się dodało się");
+        return redirect()->back()->with('message', "Sekcja została zaktualizowana");
     }
 }

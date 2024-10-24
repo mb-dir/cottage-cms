@@ -28,11 +28,10 @@ class PhotoController extends Controller
                 }
             }
 
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Zdjęcia zostały dodane');
         }
 
-        // TODO
-        return redirect()->back()->with("message", "Wystąpił błąd");
+        return redirect()->back()->with("error", "Wystąpił błąd");
     }
 
 
