@@ -2,6 +2,7 @@
   import { router, useForm } from '@inertiajs/vue3';
   import Modal from '../../UI/Modal.vue';
   import { ref } from 'vue';
+  import Button from '../../UI/Button.vue';
 
   const props = defineProps({ section: { type: Object, required: true }, photos: { type: Array, required: true } });
 
@@ -55,15 +56,17 @@
         </div>
       </div>
 
-      <button class="primary-button" type="submit">Zapisz</button>
+      <Button>Zapisz</Button>
     </form>
   </Modal>
   <div class="section-card">
     <h3>{{ section.title }}</h3>
     <p>{{ section.content }}</p>
 
-    <button class="edit-button" @click="openModal">Edytuj</button>
-    <button class="delete-button" @click="onSectionDelete(section)">Usuń</button>
+    <div class="section-card__buttons">
+      <Button @click="openModal">Edytuj</Button>
+      <Button type="delete" @click="onSectionDelete(section)">Usuń</Button>
+    </div>
   </div>
 </template>
 
@@ -83,57 +86,6 @@
   .section-card p {
     font-size: 14px;
     margin-bottom: 10px;
-  }
-
-  .edit-button {
-    background-color: #10b981;
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-  }
-
-  .edit-button:hover {
-    background-color: #059669;
-  }
-
-  .delete-button {
-    background-color: #b91010;
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-  }
-
-  .delete-button:hover {
-    background-color: #e70d0d;
-  }
-
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-  }
-
-  .primary-button {
-    background-color: #2563eb;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
   }
 
   .form-group {
@@ -194,6 +146,11 @@
     height: 100%;
     object-fit: cover; /* Maintain aspect ratio, cover the container */
     border-radius: 8px; /* Apply rounded corners to images */
+  }
+
+  .section-card__buttons {
+    display: flex;
+    justify-content: space-between;
   }
 
 </style>

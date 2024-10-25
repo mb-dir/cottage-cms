@@ -3,6 +3,7 @@
   import GallerySectionCard from '../../../Components/Sections/Gallery/GallerySectionCard.vue';
   import { useForm, usePage } from '@inertiajs/vue3';
   import { computed } from 'vue';
+  import Button from '../../../Components/UI/Button.vue';
 
   defineProps({
     photos: { required: true, type: Array },
@@ -44,7 +45,7 @@
           <textarea id="content" v-model="form.content" class="textarea-field" placeholder="Opis sekcji"></textarea>
         </div>
 
-        <button class="primary-button" type="submit">Zapisz</button>
+        <Button>Zapisz</Button>
       </form>
     </section>
 
@@ -102,23 +103,7 @@
   .textarea-field {
     min-height: 100px;
   }
-
-  .primary-button {
-    background-color: #2563eb;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .primary-button:hover {
-    background-color: #1d4ed8;
-  }
-
+  
   /* Styling for the gallery section list */
   .gallery-sections {
     padding: 20px;
