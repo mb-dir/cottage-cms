@@ -3,6 +3,8 @@
   import Modal from '../../UI/Modal.vue';
   import { ref } from 'vue';
   import Button from '../../UI/Button.vue';
+  import Input from '../../Forms/Controls/Input.vue';
+  import Textarea from '../../Forms/Controls/Textarea.vue';
 
   const props = defineProps({ section: { type: Object, required: true }, photos: { type: Array, required: true } });
 
@@ -39,15 +41,8 @@
 <template>
   <Modal ref="modal">
     <form class="form-container" @submit.prevent="onSubmit">
-      <div class="form-group">
-        <label for="title">Tytuł sekcji</label>
-        <input id="title" v-model="form.title" class="input-field" placeholder="Tytuł sekcji" type="text" />
-      </div>
-
-      <div class="form-group">
-        <label for="content">Opis sekcji</label>
-        <textarea id="content" v-model="form.content" class="textarea-field" placeholder="Opis sekcji"></textarea>
-      </div>
+      <Input v-model="form.title" label="Tytuł sekcji" />
+      <Textarea v-model="form.content" label="Opis sekcji" />
 
       <div v-if="photos.length > 0" class="photos-grid">
         <div v-for="photo in photos" class="photo-item">
