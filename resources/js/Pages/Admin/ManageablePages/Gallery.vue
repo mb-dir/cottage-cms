@@ -6,6 +6,7 @@
   import Button from '../../../Components/UI/Button.vue';
   import Input from '../../../Components/Forms/Controls/Input.vue';
   import Textarea from '../../../Components/Forms/Controls/Textarea.vue';
+  import PhotoGridWithCheckboxes from '../../../Components/UI/PhotoGridWithCheckboxes.vue';
 
   defineProps({
     photos: { required: true, type: Array },
@@ -22,6 +23,7 @@
   const form = useForm({
     title: '',
     content: '',
+    photos: [],
     page_id: currentPageId.value,
   });
 
@@ -39,6 +41,8 @@
       <form class="form-section__form" @submit.prevent="onSubmit">
         <Input v-model="form.title" label="Tytuł sekcji" />
         <Textarea v-model="form.content" label="Opis sekcji" />
+        <span>Wybierz zdjęcia przypisane do sekcji</span>
+        <PhotoGridWithCheckboxes v-model="form.photos" :photos />
 
         <Button>Zapisz</Button>
       </form>
@@ -66,7 +70,7 @@
   .form-section__form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 8px;
   }
 
   /* Styling for the gallery section list */

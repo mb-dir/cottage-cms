@@ -19,7 +19,7 @@
 <template>
   <div class="control">
     <label :for="uniqueId" class="control__label">{{ label }}</label>
-    <textarea :id="uniqueId" v-model="model" :placeholder="label" :type class="control__textarea" v-bind="$attrs" />
+    <textarea :id="uniqueId" v-model="model" :placeholder="label" class="control__textarea" v-bind="$attrs" />
   </div>
 </template>
 

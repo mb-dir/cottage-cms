@@ -5,6 +5,7 @@
   import Button from '../../UI/Button.vue';
   import Input from '../../Forms/Controls/Input.vue';
   import Textarea from '../../Forms/Controls/Textarea.vue';
+  import PhotoGridWithCheckboxes from '../../UI/PhotoGridWithCheckboxes.vue';
 
   const props = defineProps({ section: { type: Object, required: true }, photos: { type: Array, required: true } });
 
@@ -43,13 +44,7 @@
     <form class="form-container" @submit.prevent="onSubmit">
       <Input v-model="form.title" label="Tytuł sekcji" />
       <Textarea v-model="form.content" label="Opis sekcji" />
-
-      <div v-if="photos.length > 0" class="photos-grid">
-        <div v-for="photo in photos" class="photo-item">
-          <input v-model="form.photos" :value="photo" class="photo-checkbox" type="checkbox">
-          <img :src="photo.src" alt="" class="photo-img" />
-        </div>
-      </div>
+      <PhotoGridWithCheckboxes v-model="form.photos" :photos />
 
       <Button>Zapisz</Button>
     </form>
@@ -81,66 +76,6 @@
   .section-card p {
     font-size: 14px;
     margin-bottom: 10px;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  label {
-    font-weight: 500;
-  }
-
-  .input-field,
-  .textarea-field {
-    padding: 10px;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: #fff;
-    transition: border-color 0.3s ease;
-  }
-
-  .input-field:focus,
-  .textarea-field:focus {
-    border-color: #2563eb;
-    outline: none;
-  }
-
-  .textarea-field {
-    min-height: 100px;
-  }
-
-  .photos-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-    gap: 10px; /* Space between photos */
-    padding: 10px; /* Padding around the grid */
-  }
-
-  .photo-item {
-    width: 100%;
-    height: 200px; /* Fixed height for uniformity */
-    overflow: hidden; /* Prevent images from overflowing */
-    border-radius: 8px; /* Rounded corners for the photos */
-    position: relative;
-  }
-
-  .photo-checkbox {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-  }
-
-  .photo-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Maintain aspect ratio, cover the container */
-    border-radius: 8px; /* Apply rounded corners to images */
   }
 
   .section-card__buttons {
