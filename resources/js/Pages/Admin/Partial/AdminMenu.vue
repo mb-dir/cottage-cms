@@ -6,29 +6,42 @@
 </script>
 
 <template>
-  <nav class="adminNav">
-    <p>Menu</p>
-    <ul>
+  <nav class="admin-nav">
+    <p class="admin-nav__title">Menu</p>
+    <ul class="admin-nav__menu">
       <li>
-        <Link :class="{'adminNav__link--active': route().current('admin.photo.index')}" :href="route('admin.photo.index')" class="adminNav__link">Zdjęcia</Link>
+        <Link :class="{'admin-nav__link--active': route().current('admin.photo.index')}" :href="route('admin.photo.index')" class="admin-nav__link">Zdjęcia</Link>
       </li>
     </ul>
-    <p>Strony zarządzalne</p>
-    <ul>
+    <p class="admin-nav__title">Strony zarządzalne</p>
+    <ul class="admin-nav__menu">
       <li v-for="item in menu">
-        <Link :class="{'adminNav__link--active': route().current(item.route_admin_name)}" :href="route(item.route_admin_name)" class="adminNav__link">{{ item.name }}</Link>
+        <Link :class="{'admin-nav__link--active': route().current(item.route_admin_name)}" :href="route(item.route_admin_name)" class="admin-nav__link">{{ item.name }}</Link>
       </li>
     </ul>
   </nav>
 </template>
 
 <style scoped>
-  .adminNav {
+  .admin-nav {
     border-right: 1px solid white;
-    padding: 12px;
+    padding: 0.5rem;
   }
 
-  .adminNav__link--active {
+  .admin-nav__title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+
+  .admin-nav__menu {
+    list-style: none;
+    margin: 0;
+    padding: 0.25rem;
+  }
+
+  .admin-nav__link--active {
     font-weight: bold;
   }
 </style>
