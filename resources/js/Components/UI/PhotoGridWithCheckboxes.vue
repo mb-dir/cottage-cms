@@ -1,5 +1,7 @@
 <script setup>
-  defineProps({
+  import { Link } from '@inertiajs/vue3';
+
+  const props = defineProps({
     photos: { type: Array, required: true },
   });
 
@@ -12,6 +14,10 @@
       <input v-model="model" :value="photo" class="photos-grid__checkbox" type="checkbox">
       <img :src="photo.src" alt="Gallery photo" class="photos-grid__img" />
     </div>
+  </div>
+  <div v-else class="no-photo">
+    Brak zdjęć do wyboru,
+    <Link :href="route('admin.photo.index')" class="no-photo__link">dodaj zdjęcia</Link>
   </div>
 </template>
 
@@ -48,5 +54,14 @@
     height: 100%;
     object-fit: cover; /* Maintain aspect ratio, cover the container */
     border-radius: 8px; /* Apply rounded corners to images */
+  }
+
+  .no-photo {
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .no-photo__link {
+    text-decoration: underline;
   }
 </style>

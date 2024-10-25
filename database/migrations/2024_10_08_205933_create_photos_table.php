@@ -14,7 +14,6 @@ return new class extends Migration {
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
             $table->string('src');
-            $table->boolean('is_gallery')->default(false);
             $table->timestamps();
         });
     }

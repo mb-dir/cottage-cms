@@ -23,10 +23,12 @@ class GallerySectionController extends Controller
         $validated = $request->validate([
             'title' => ['string', 'required'],
             'content' => ['string', 'required'],
+            'photos.*.id' => ['required', 'integer', 'exists:photos,id'],
             'page_id' => ['required', 'integer', 'exists:pages,id'],
         ]);
 
-        GallerySection::create($validated);
+        $gallerySection = GallerySection::create($validated);
+        $gallerySection->photos()->sync(array_column($validated['photos'], 'id'));
 
         return redirect()->back()->with('message', "Nowa sekcja została utworzona");
     }

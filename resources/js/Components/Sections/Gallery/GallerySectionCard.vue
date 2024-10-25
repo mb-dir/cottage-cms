@@ -14,7 +14,8 @@
   const form = useForm({
     title: props.section.title,
     content: props.section.content,
-    photos: props.section.photos,
+    // photos from section have pivot cuz of loaded relation, photos passed as props(represents all available photos to add) have to pivot key, and that was the reason why in PhotoGridWithCheckboxes v-model didn't match any element
+    photos: props.section.photos.map(({ pivot, ...rest }) => rest),
   });
 
   function onSectionDelete(gallerySection) {
