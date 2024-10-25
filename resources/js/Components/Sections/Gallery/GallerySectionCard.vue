@@ -44,14 +44,15 @@
     <form class="form-container" @submit.prevent="onSubmit">
       <Input v-model="form.title" label="Tytuł sekcji" />
       <Textarea v-model="form.content" label="Opis sekcji" />
+      <span>Wybierz zdjęcia przypisane do sekcji</span>
       <PhotoGridWithCheckboxes v-model="form.photos" :photos />
 
       <Button>Zapisz</Button>
     </form>
   </Modal>
   <div class="section-card">
-    <h3>{{ section.title }}</h3>
-    <p>{{ section.content }}</p>
+    <h3 class="section-card__title">{{ section.title }}</h3>
+    <p class="section-card__content">{{ section.content }}</p>
 
     <div class="section-card__buttons">
       <Button @click="openModal">Edytuj</Button>
@@ -68,14 +69,13 @@
     transition: box-shadow 0.3s ease;
   }
 
-  .section-card h3 {
-    margin-bottom: 10px;
-    font-size: 18px;
+  .section-card__title {
+    margin: 0;
   }
 
-  .section-card p {
+  .section-card__content {
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 28px;
   }
 
   .section-card__buttons {

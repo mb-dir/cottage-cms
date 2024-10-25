@@ -28,7 +28,7 @@
   });
 
   function onSubmit() {
-    form.post(route('admin.gallery-section.store'));
+    form.post(route('admin.gallery-section.store'), { preserveState: false });
   }
 
 </script>
@@ -64,7 +64,6 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
   }
 
   .form-section__form {
@@ -81,9 +80,9 @@
   }
 
   .gallery-sections__list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .gallery-sections__no-sections {
