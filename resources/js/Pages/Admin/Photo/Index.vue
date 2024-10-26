@@ -1,7 +1,10 @@
 <script setup>
   import AdminLayout from '../../../Layouts/AdminLayout.vue';
-  import { useForm, router } from '@inertiajs/vue3';
+  import { useForm } from '@inertiajs/vue3';
   import { ref, reactive } from 'vue';
+  import PhotoGridWithDelete from '../../../Components/UI/PhotoGridWithDelete.vue';
+  import Button from '../../../Components/UI/Button.vue';
+  import Input from '../../../Components/Forms/Controls/Input.vue';
 
   const props = defineProps({
     photos: { required: true },
@@ -19,9 +22,7 @@
       onSuccess: () => {
         form.files = [];
         filePreviews.length = 0;
-        if (fileInputRef.value) {
-          fileInputRef.value.value = null;
-        }
+        fileInputRef.value.inputRef.value = null;
       },
     });
   }
@@ -49,92 +50,63 @@
     const dataTransfer = new DataTransfer();
     filesArray.forEach((file) => dataTransfer.items.add(file));
 
-    fileInputRef.value.files = dataTransfer.files;
+    fileInputRef.value.inputRef.files = dataTransfer.files;
     form.files = dataTransfer.files;
-  }
-
-  function onPhotoDelete(photo) {
-    if (confirm('Czy jesteś pewnien?')) {
-      router.delete(route('admin.photo.destroy', { photo }));
-    }
   }
 </script>
 
 <template>
   <AdminLayout>
-    <form @submit.prevent="onSubmit">
-      <input ref="fileInputRef" multiple type="file" @change="onPhotoChange">
-      <button type="submit">Dodaj</button>
-    </form>
+    <div class="photo-index">
+      <form @submit.prevent="onSubmit">
+        <Input ref="fileInputRef" label="Dodaj zdjęcia" multiple type="file" @change="onPhotoChange" />
+        <Button>Dodaj</Button>
+      </form>
 
-    <!-- Preview the newly added photos -->
-    <div v-if="filePreviews.length" class="photos-preview">
-      <div v-for="(preview, index) in filePreviews" :key="index" class="preview">
-        <button class="preview-delete" @click="deletePreviewPhoto(index)">X</button>
-        <img :src="preview" alt="Preview">
+      <div v-if="filePreviews.length">
+        <h3>Zdjęcia które zostaną dodane</h3>
+        <div class="photo-index__preview-container">
+          <div v-for="(preview, index) in filePreviews" :key="index" class="photo-index__preview">
+            <Button class="photo-index__preview-delete" type="delete" @click="deletePreviewPhoto(index)">X</Button>
+            <img :src="preview" alt="Preview" class="photo-index__preview-img">
+          </div>
+        </div>
       </div>
+
+      <h3>Dodane zdjęcia</h3>
+      <PhotoGridWithDelete :photos />
     </div>
 
-    <!-- Existing photos already stored -->
-    <div v-if="photos?.length" class="photos">
-      <div v-for="photo in photos" class="photos__photo">
-        <button class="photos__delete" @click="onPhotoDelete(photo)">X</button>
-        <img :alt="photo.src" :src="photo.src">
-      </div>
-    </div>
   </AdminLayout>
 </template>
 
 <style scoped>
-  .photos {
+  .photo-index {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .photo-index__preview-container {
     display: grid;
-    grid-template-columns: repeat(4, minmax(150px, 1fr));
-    grid-template-rows: 200px;
-    gap: 16px;
-    padding: 16px;
-  }
-
-  .photos img {
-    width: 100%;
-    object-fit: cover;
-    height: 200px;
-  }
-
-  .photos__photo {
-    position: relative;
-  }
-
-  .photos__delete {
-    font-weight: bold;
-    color: red;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-
-  .photos-preview {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(150px, 1fr));
+    grid-template-columns: repeat(6, 1fr);
     gap: 16px;
     margin-bottom: 16px;
   }
 
-  .preview img {
+  .photo-index__preview-img {
     width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border: 2px solid #ddd;
-    border-radius: 4px;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio, cover the container */
+    border-radius: 8px; /* Apply rounded corners to images */
   }
 
-  .preview {
+  .photo-index__preview {
     position: relative;
   }
 
-  .preview-delete {
-    color: red;
+  .photo-index__preview-delete {
     position: absolute;
-    right: 5px;
-    top: 5px;
+    top: 8px;
+    right: 8px;
   }
 </style>

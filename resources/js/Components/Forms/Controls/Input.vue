@@ -1,13 +1,15 @@
 <script setup>
+  import { ref } from 'vue';
+
   defineOptions({
     inheritAttrs: false,
   });
-  
+
   defineProps({
     type: {
       type: String,
       default: 'text',
-      validator: (prop) => ['password', 'text', 'number', 'email', 'search', 'date', 'image'].includes(prop),
+      validator: (prop) => ['password', 'text', 'number', 'email', 'search', 'date', 'file'].includes(prop),
     },
     // label same as placeholder
     label: {
@@ -18,13 +20,19 @@
 
   const model = defineModel({ type: String });
 
+  const inputRef = ref(null);
+
   const uniqueId = `input-${Math.random().toString(36).substr(2, 9)}`;
+
+  defineExpose({
+    inputRef,
+  });
 </script>
 
 <template>
   <div class="control">
     <label :for="uniqueId" class="control__label">{{ label }}</label>
-    <input :id="uniqueId" v-model="model" :placeholder="label" :type class="control__input" v-bind="$attrs" />
+    <input :id="uniqueId" ref="inputRef" v-model="model" :placeholder="label" :type class="control__input" v-bind="$attrs" />
   </div>
 </template>
 
