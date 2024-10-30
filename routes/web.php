@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ManageablePages\GalleryController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\Sections\ContentSectionController;
 use App\Http\Controllers\Admin\Sections\GallerySectionController;
+use App\Http\Controllers\Client\BeekeepingController;
 use App\Http\Controllers\Client\GalleryController as ClientGalleryController;
 use App\Http\Middleware\LogoutIfAuthenticated;
 use Illuminate\Support\Facades\Route;
@@ -18,9 +19,7 @@ Route::get('/okolica-i-atrakcje', function () {
     return Inertia::render('Client/Attractions');
 })->name('client.attractions.index');
 
-Route::get('/pszczelarstwo', function () {
-    return Inertia::render('Client/Beekeeping');
-})->name('client.beekeeping.index');
+Route::get('/pszczelarstwo', [BeekeepingController::class, 'index'])->name('client.beekeeping.index');
 
 Route::get('/galeria', [ClientGalleryController::class, 'index'])->name('client.gallery.index');
 
@@ -54,9 +53,10 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('Admin/ManageablePages/Attractions');
     })->name('admin.attractions.index');
 
-    Route::get('/admin/manageable/beekeeping', function () {
-        return Inertia::render('Admin/ManageablePages/Beekeeping');
-    })->name('admin.beekeeping.index');
+
+    Route::get('/admin/manageable/beekeeping', [
+        \App\Http\Controllers\Admin\ManageablePages\BeekeepingController::class, 'index',
+    ])->name('admin.beekeeping.index');
 
     Route::get('/admin/manageable/gallery', [
         GalleryController::class, 'index',
