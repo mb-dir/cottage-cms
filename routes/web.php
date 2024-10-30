@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ManageablePages\GalleryController;
 use App\Http\Controllers\Admin\PhotoController;
+use App\Http\Controllers\Admin\Sections\ContentSectionController;
 use App\Http\Controllers\Admin\Sections\GallerySectionController;
 use App\Http\Controllers\Client\GalleryController as ClientGalleryController;
 use App\Http\Middleware\LogoutIfAuthenticated;
@@ -40,6 +41,10 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/gallery-section', [GallerySectionController::class, 'store'])->name('admin.gallery-section.store');
     Route::delete('admin/gallery-section/{gallerySection}', [GallerySectionController::class, 'destroy'])->name('admin.gallery-section.destroy');
     Route::put('admin/gallery-section/{gallerySection}', [GallerySectionController::class, 'update'])->name('admin.gallery-section.update');
+
+    Route::post('admin/content-section', [ContentSectionController::class, 'store'])->name('admin.content-section.store');
+    Route::delete('admin/content-section/{contentSection}', [ContentSectionController::class, 'destroy'])->name('admin.content-section.destroy');
+    Route::put('admin/content-section/{contentSection}', [ContentSectionController::class, 'update'])->name('admin.content-section.update');
 
     Route::get('/admin/manageable/main-page', function () {
         return Inertia::render('Admin/ManageablePages/MainPage');
