@@ -26,7 +26,7 @@ class ContentSectionController extends Controller
             'page_id' => ['required', 'integer', 'exists:pages,id'],
         ]);
 
-        $gallerySection = ContentSection::create($validated);
+        ContentSection::create($validated);
 
         return redirect()->back()->with('message', "Nowa sekcja została utworzona");
     }
@@ -40,7 +40,6 @@ class ContentSectionController extends Controller
         ]);
 
         $contentSection->update($validated);
-        $contentSection->photos()->sync(array_column($validated['photos'], 'id'));
 
         return redirect()->back()->with('message', "Sekcja została zaktualizowana");
     }
