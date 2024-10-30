@@ -1,5 +1,7 @@
 <script setup>
   import ClientLayout from '../../Layouts/ClientLayout.vue';
+
+  defineProps({ contentSections: { type: Array, required: true } });
 </script>
 
 <template>
@@ -30,6 +32,7 @@
         <li>Świece woskowe</li>
       </ul>
     </section>
+    {{ contentSections }}
   </ClientLayout>
 </template>
 

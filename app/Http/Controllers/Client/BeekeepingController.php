@@ -14,6 +14,6 @@ class BeekeepingController extends Controller
     {
         $contentSections = ContentSection::all();
 
-        return Inertia::render('Client/Gallery', compact('contentSections'));
+        return Inertia::render('Client/Beekeeping', compact('contentSections'));
     }
 }
