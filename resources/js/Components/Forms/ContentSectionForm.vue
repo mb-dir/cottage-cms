@@ -1,9 +1,9 @@
 <script setup>
-  import Textarea from './Controls/Textarea.vue';
   import Button from '../UI/Button.vue';
   import Input from './Controls/Input.vue';
   import { useForm, usePage } from '@inertiajs/vue3';
   import { computed } from 'vue';
+  import CKTextEditor from './Controls/CKTextEditor.vue';
 
   const adminMenu = usePage().props.admin_menu;
 
@@ -26,11 +26,11 @@
 
 <template>
   <section class="form-section">
-    <h2>Dodaj sekcje galerii</h2>
+    <h2>Dodaj sekcje</h2>
 
     <form class="form-section__form" @submit.prevent="onSubmit">
       <Input v-model="form.title" label="Tytuł sekcji" />
-      <Textarea v-model="form.content" label="Opis sekcji" />
+      <CKTextEditor v-model="form.content" label="Opis sekcji" />
 
       <Button>Zapisz</Button>
     </form>

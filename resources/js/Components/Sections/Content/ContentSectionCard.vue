@@ -4,7 +4,8 @@
   import { ref } from 'vue';
   import Button from '../../UI/Button.vue';
   import Input from '../../Forms/Controls/Input.vue';
-  import Textarea from '../../Forms/Controls/Textarea.vue';
+  import 'ckeditor5/ckeditor5.css';
+  import CKTextEditor from '../../Forms/Controls/CKTextEditor.vue';
 
   const props = defineProps({ section: { type: Object, required: true } });
 
@@ -15,6 +16,7 @@
     content: props.section.content,
   });
 
+  // TODO - cke editor integration
   function onSectionDelete(contentSection) {
     router.delete(route('admin.content-section.destroy', { contentSection }));
   }
@@ -35,20 +37,20 @@
       },
     );
   }
+
 </script>
 
 <template>
   <Modal ref="modal">
     <form class="form-container" @submit.prevent="onSubmit">
       <Input v-model="form.title" label="Tytuł sekcji" />
-      <Textarea v-model="form.content" label="Opis sekcji" />
-
+      <CKTextEditor v-model="form.content" label="Opis sekcji" />
       <Button>Zapisz</Button>
     </form>
   </Modal>
   <div class="section-card">
     <h3 class="section-card__title">{{ section.title }}</h3>
-    <p class="section-card__content">{{ section.content }}</p>
+    <p class="section-card__content" v-html="section.content" />
 
     <div class="section-card__buttons">
       <Button @click="openModal">Edytuj</Button>
