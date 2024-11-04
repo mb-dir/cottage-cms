@@ -38,11 +38,10 @@ a {
   margin: 0 auto;
 }
 
-.section__list {
+.section ul, .section ol {
   margin: 0;
   padding: 0;
-  text-align: left;
-  list-style: disc inside;
+  list-style-position: inside;
 }
 
 :root {
