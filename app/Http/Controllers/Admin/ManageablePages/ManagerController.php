@@ -50,7 +50,8 @@ class ManagerController extends Controller
     public function gallery()
     {
         $photos = Photo::all();
-        $gallerySections = GallerySection::with('page');
+        $gallerySections = GallerySection::all()->where('page_id', Page::Gallery->value)->load('page')->load('photos');
+        
 
         return Inertia::render('Admin/ManageablePages/Gallery', compact('photos', 'gallerySections'));
     }
