@@ -15,6 +15,12 @@ class GallerySection extends Model
     protected $fillable = ['title', 'content', 'page_id'];
 
 
+    public function page()
+    {
+        return $this->belongsToMany(Page::class);
+    }
+
+
     public function photos()
     {
         return $this->belongsToMany(Photo::class, 'gallery_sections_photos');

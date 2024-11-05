@@ -13,4 +13,10 @@ class ContentSection extends Model
 
 
     protected $fillable = ['title', 'content', 'page_id'];
+
+
+    public function page()
+    {
+        return $this->belongsToMany(Page::class);
+    }
 }
