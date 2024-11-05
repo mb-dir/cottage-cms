@@ -62,6 +62,7 @@
 <style scoped>
   .form-container {
     width: 100%;
+    max-width: 550px;
   }
 
   .section-card {
