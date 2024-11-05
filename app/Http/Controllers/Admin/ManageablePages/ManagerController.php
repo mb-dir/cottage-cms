@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\ManageablePages;
 
 
+use App\Enums\Page;
 use App\Http\Controllers\Controller;
 use App\Models\ContentSection;
 use App\Models\GallerySection;
@@ -12,46 +13,44 @@ use Inertia\Inertia;
 
 class ManagerController extends Controller
 {
-    public function about(string $slug)
+    public function about()
     {
-        $contentSections = ContentSection::with('page')->where('slug', $slug);
-        dd($contentSections);
+        $contentSections = ContentSection::where('page_id', Page::MainPage->value)->get();
 
         return Inertia::render('Admin/ManageablePages/MainPage', compact('contentSections'));
     }
 
 
-    public function attractions(string $slug)
+    public function attractions()
     {
-        $contentSections = ContentSection::with('page')->where('slug', $slug);
-        dd($contentSections);
+        $contentSections = ContentSection::where('page_id', Page::Attractions->value)->get();
+
+        return Inertia::render('Admin/ManageablePages/Attractions', compact('contentSections'));
+    }
+
+
+    public function beekeping()
+    {
+        $contentSections = ContentSection::where('page_id', Page::Beekeeping->value)->get();
+
 
         return Inertia::render('Admin/ManageablePages/Beekeeping', compact('contentSections'));
     }
 
 
-    public function beekeping(string $slug)
+    public function contact()
     {
-        $contentSections = ContentSection::with('page')->where('slug', $slug);
+        $contentSections = ContentSection::where('page_id', Page::Contact->value)->get();
 
-        return Inertia::render('Admin/ManageablePages/Beekeeping', compact('contentSections'));
+
+        return Inertia::render('Admin/ManageablePages/Contact', compact('contentSections'));
     }
 
 
-    public function contact(string $slug)
-    {
-        $contentSections = ContentSection::with('page')->where('slug', $slug);
-        dd($contentSections);
-
-        return Inertia::render('Admin/ManageablePages/Beekeeping', compact('contentSections'));
-    }
-
-
-    public function gallery(string $slug)
+    public function gallery()
     {
         $photos = Photo::all();
-//        $gallerySections = GallerySection::all()->where('slug', $slug)->firstOrFail()->load('photos');
-        $gallerySections = GallerySection::with('page')->where('slug', $slug);
+        $gallerySections = GallerySection::with('page');
 
         return Inertia::render('Admin/ManageablePages/Gallery', compact('photos', 'gallerySections'));
     }

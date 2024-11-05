@@ -17,6 +17,6 @@ class ContentSection extends Model
 
     public function page()
     {
-        return $this->belongsToMany(Page::class);
+        return $this->belongsTo(Page::class);
     }
 }

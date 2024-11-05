@@ -8,7 +8,7 @@
   const adminMenu = usePage().props.admin_menu;
 
   const currentPageId = computed(() => {
-    const foundItem = adminMenu.find((item) => item.route_admin_name === 'admin.gallery.index');
+    const foundItem = adminMenu.find((item) => item.route_admin_name === route().current());
     return foundItem ? foundItem.id : null;
   });
 

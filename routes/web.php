@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ManageablePages\GalleryController;
+use App\Http\Controllers\Admin\ManageablePages\ManagerController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\Sections\ContentSectionController;
 use App\Http\Controllers\Admin\Sections\GallerySectionController;
@@ -45,26 +46,25 @@ Route::middleware('auth')->group(function () {
     Route::delete('admin/content-section/{contentSection}', [ContentSectionController::class, 'destroy'])->name('admin.content-section.destroy');
     Route::put('admin/content-section/{contentSection}', [ContentSectionController::class, 'update'])->name('admin.content-section.update');
 
-    Route::get('/admin/manageable/main-page', function () {
-        return Inertia::render('Admin/ManageablePages/MainPage');
-    })->name('admin.about.index');
-
-    Route::get('/admin/manageable/attractions', function () {
-        return Inertia::render('Admin/ManageablePages/Attractions');
-    })->name('admin.attractions.index');
-
+    Route::get('/admin/manageable/attractions', [
+        ManagerController::class, 'attractions',
+    ])->name('admin.attractions.index');
 
     Route::get('/admin/manageable/beekeeping', [
-        \App\Http\Controllers\Admin\ManageablePages\BeekeepingController::class, 'index',
+        ManagerController::class, 'beekeping',
     ])->name('admin.beekeeping.index');
 
+    Route::get('/admin/manageable/main-page', [
+        ManagerController::class, 'about',
+    ])->name('admin.about.index');
+
     Route::get('/admin/manageable/gallery', [
-        GalleryController::class, 'index',
+        ManagerController::class, 'gallery',
     ])->name('admin.gallery.index');
 
-    Route::get('/admin/manageable/contact', function () {
-        return Inertia::render('Admin/ManageablePages/Contact');
-    })->name('admin.contact.index');
+    Route::get('/admin/manageable/contact', [
+        ManagerController::class, 'contact',
+    ])->name('admin.contact.index');
 });
 
 
