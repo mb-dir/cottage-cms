@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\ManageablePages;
+namespace App\Http\Controllers\Client\ManageablePages;
 
 
 use App\Enums\Page;
@@ -17,7 +17,7 @@ class ManagerController extends Controller
     {
         $contentSections = ContentSection::where('page_id', Page::MainPage->value)->get();
 
-        return Inertia::render('Admin/ManageablePages/MainPage', compact('contentSections'));
+        return Inertia::render('Client/ManageablePages/MainPage', compact('contentSections'));
     }
 
 
@@ -25,7 +25,7 @@ class ManagerController extends Controller
     {
         $contentSections = ContentSection::where('page_id', Page::Attractions->value)->get();
 
-        return Inertia::render('Admin/ManageablePages/Attractions', compact('contentSections'));
+        return Inertia::render('Client/ManageablePages/Attractions', compact('contentSections'));
     }
 
 
@@ -34,7 +34,7 @@ class ManagerController extends Controller
         $contentSections = ContentSection::where('page_id', Page::Beekeeping->value)->get();
 
 
-        return Inertia::render('Admin/ManageablePages/Beekeeping', compact('contentSections'));
+        return Inertia::render('Client/ManageablePages/Beekeeping', compact('contentSections'));
     }
 
 
@@ -43,7 +43,7 @@ class ManagerController extends Controller
         $contentSections = ContentSection::where('page_id', Page::Contact->value)->get();
 
 
-        return Inertia::render('Admin/ManageablePages/Contact', compact('contentSections'));
+        return Inertia::render('Client/ManageablePages/Contact', compact('contentSections'));
     }
 
 
@@ -53,6 +53,6 @@ class ManagerController extends Controller
         $gallerySections = GallerySection::all()->where('page_id', Page::Gallery->value)->load('page')->load('photos');
 
 
-        return Inertia::render('Admin/ManageablePages/Gallery', compact('photos', 'gallerySections'));
+        return Inertia::render('Client/ManageablePages/Gallery', compact('photos', 'gallerySections'));
     }
 }

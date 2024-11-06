@@ -12,21 +12,15 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
-Route::get('/', function () {
-    return Inertia::render('Client/MainPage');
-})->name('client.about.index');
+Route::get('/', [\App\Http\Controllers\Client\ManageablePages\ManagerController::class, 'about'])->name('client.about.index');
 
-Route::get('/okolica-i-atrakcje', function () {
-    return Inertia::render('Client/Attractions');
-})->name('client.attractions.index');
+Route::get('/okolica-i-atrakcje', [\App\Http\Controllers\Client\ManageablePages\ManagerController::class, 'attractions'])->name('client.attractions.index');
 
-Route::get('/pszczelarstwo', [BeekeepingController::class, 'index'])->name('client.beekeeping.index');
+Route::get('/pszczelarstwo', [\App\Http\Controllers\Client\ManageablePages\ManagerController::class, 'beekeeping'])->name('client.beekeeping.index');
 
-Route::get('/galeria', [ClientGalleryController::class, 'index'])->name('client.gallery.index');
+Route::get('/galeria', [\App\Http\Controllers\Client\ManageablePages\ManagerController::class, 'gallery'])->name('client.gallery.index');
 
-Route::get('/kontakt', function () {
-    return Inertia::render('Client/Contact');
-})->name('client.contact.index');
+Route::get('/kontakt', [\App\Http\Controllers\Client\ManageablePages\ManagerController::class, 'contact'])->name('client.contact.index');
 
 
 Route::middleware('auth')->group(function () {
@@ -51,7 +45,7 @@ Route::middleware('auth')->group(function () {
     ])->name('admin.attractions.index');
 
     Route::get('/admin/manageable/beekeeping', [
-        ManagerController::class, 'beekeping',
+        ManagerController::class, 'beekeeping',
     ])->name('admin.beekeeping.index');
 
     Route::get('/admin/manageable/main-page', [
