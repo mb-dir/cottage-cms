@@ -25,4 +25,10 @@ class GallerySection extends Model
     {
         return $this->belongsToMany(Photo::class, 'gallery_sections_photos');
     }
+
+
+    public function sectionable()
+    {
+        return $this->morphOne(OrderedSection::class, 'sectionable');
+    }
 }

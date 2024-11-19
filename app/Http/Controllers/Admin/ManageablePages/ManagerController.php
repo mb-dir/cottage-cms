@@ -7,6 +7,7 @@ use App\Enums\Page;
 use App\Http\Controllers\Controller;
 use App\Models\ContentSection;
 use App\Models\GallerySection;
+use App\Models\OrderedSection;
 use App\Models\Photo;
 use Inertia\Inertia;
 
@@ -40,7 +41,7 @@ class ManagerController extends Controller
 
     public function contact()
     {
-        $contentSections = ContentSection::where('page_id', Page::Contact->value)->get();
+        $contentSections = OrderedSection::where('page_id', Page::Contact->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->sectionable;
 
 
         return Inertia::render('Admin/ManageablePages/Contact', compact('contentSections'));

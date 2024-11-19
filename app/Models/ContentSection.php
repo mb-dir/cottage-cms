@@ -19,4 +19,10 @@ class ContentSection extends Model
     {
         return $this->belongsTo(Page::class);
     }
+
+
+    public function sectionable()
+    {
+        return $this->morphOne(OrderedSection::class, 'sectionable');
+    }
 }
