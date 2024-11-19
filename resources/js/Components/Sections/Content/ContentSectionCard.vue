@@ -9,6 +9,10 @@
 
   const props = defineProps({ section: { type: Object, required: true } });
 
+  defineOptions({
+    inheritAttrs: false,
+  });
+
   const modal = ref(null);
 
   const form = useForm({
@@ -48,7 +52,7 @@
       <Button>Zapisz</Button>
     </form>
   </Modal>
-  <div class="section-card">
+  <div class="section-card" v-bind="$attrs">
     <h3 class="section-card__title">{{ section.title }}</h3>
     <p class="section-card__content" v-html="section.content" />
 

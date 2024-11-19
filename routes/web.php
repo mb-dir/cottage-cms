@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ManageablePages\ManagerController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\Sections\ContentSectionController;
 use App\Http\Controllers\Admin\Sections\GallerySectionController;
+use App\Http\Controllers\Admin\Sections\OrderedSectionController;
 use App\Http\Controllers\Client\BeekeepingController;
 use App\Http\Controllers\Client\GalleryController as ClientGalleryController;
 use App\Http\Middleware\LogoutIfAuthenticated;
@@ -39,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/content-section', [ContentSectionController::class, 'store'])->name('admin.content-section.store');
     Route::delete('admin/content-section/{contentSection}', [ContentSectionController::class, 'destroy'])->name('admin.content-section.destroy');
     Route::put('admin/content-section/{contentSection}', [ContentSectionController::class, 'update'])->name('admin.content-section.update');
+
+    Route::put('admin/ordered-section', [OrderedSectionController::class, 'update'])->name('admin.ordered-section-update');
 
     Route::get('/admin/manageable/attractions', [
         ManagerController::class, 'attractions',

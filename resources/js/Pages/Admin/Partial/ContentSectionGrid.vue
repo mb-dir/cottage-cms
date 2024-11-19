@@ -1,16 +1,33 @@
 <script setup>
   import ContentSectionCard from '../../../Components/Sections/Content/ContentSectionCard.vue';
+  import { ref } from 'vue';
+  import { router } from '@inertiajs/vue3';
 
   defineProps({
     contentSections: { type: Array, required: true },
   });
+
+  const draggedSectionId = ref(null);
+  const dropTargetSectionId = ref(null);
+
+  const handleDragStart = (sectionId) => {
+    draggedSectionId.value = sectionId;
+  };
+
+  const handleDrop = (sectionId) => {
+    dropTargetSectionId.value = sectionId;
+    router.put(route('admin.ordered-section-update', { draggedSectionId: draggedSectionId.value, dropTargetSectionId: dropTargetSectionId.value }));
+  };
 </script>
 
 <template>
   <section class="content-sections">
     <h2>Sekcje</h2>
     <div v-if="contentSections?.length > 0" class="content-sections__list">
-      <ContentSectionCard v-for="section in contentSections" :section />
+      <ContentSectionCard v-for="section in contentSections" :section draggable="true"
+        @dragstart="handleDragStart(section.id)"
+        @drop="handleDrop(section.id)"
+        @dragover.prevent />
     </div>
     <div v-else class="content-sections__no-sections">Brak dodanych sekcji</div>
   </section>
