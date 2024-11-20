@@ -1,16 +1,16 @@
 <script setup>
   import AdminLayout from '../../../Layouts/AdminLayout.vue';
-  import GallerySectionCard from '../../../Components/Sections/Gallery/GallerySectionCard.vue';
   import { useForm, usePage } from '@inertiajs/vue3';
   import { computed } from 'vue';
   import Button from '../../../Components/UI/Button.vue';
   import Input from '../../../Components/Forms/Controls/Input.vue';
   import Textarea from '../../../Components/Forms/Controls/Textarea.vue';
   import PhotoGridWithCheckboxes from '../../../Components/UI/PhotoGridWithCheckboxes.vue';
+  import SectionsGrid from '../Partial/SectionsGrid.vue';
 
   defineProps({
     photos: { required: true, type: Array },
-    gallerySections: { required: true, type: Array },
+    sections: { required: true, type: Array },
   });
 
   const adminMenu = usePage().props.admin_menu;
@@ -48,13 +48,7 @@
       </form>
     </section>
 
-    <section class="gallery-sections">
-      <h2>Sekcje galerii</h2>
-      <div v-if="gallerySections?.length > 0" class="gallery-sections__list">
-        <GallerySectionCard v-for="section in gallerySections" :photos :section />
-      </div>
-      <div v-else class="gallery-sections__no-sections">Brak dodanych sekcji</div>
-    </section>
+    <SectionsGrid :photos :sections />
   </AdminLayout>
 </template>
 

@@ -20,6 +20,27 @@ class OrderedSection extends Model
     ];
 
 
+    public function getFullSectionAttribute()
+    {
+        $sectionable = $this->sectionable;
+
+        if (! $sectionable) {
+            return null; // Handle cases where sectionable might not exist
+        }
+
+        return [
+            'id' => $sectionable->id,
+            'title' => $sectionable->title,
+            'content' => $sectionable->content,
+            'page_id' => $sectionable->page_id,
+            'created_at' => $sectionable->created_at,
+            'updated_at' => $sectionable->updated_at,
+            'type' => ltrim(strrchr($this->sectionable_type, '\\'), '\\'),
+            'photos' => $sectionable->photos,
+        ];
+    }
+
+
     /**
      * Define the relationship to the Page model.
      */

@@ -16,43 +16,43 @@ class ManagerController extends Controller
 {
     public function about()
     {
-        $contentSections = OrderedSection::where('page_id', Page::MainPage->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->sectionable;
+        $sections = OrderedSection::where('page_id', Page::MainPage->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->full_section;
 
-        return Inertia::render('Client/ManageablePages/MainPage', compact('contentSections'));
+        return Inertia::render('Client/ManageablePages/MainPage', compact('sections'));
     }
 
 
     public function attractions()
     {
-        $contentSections = OrderedSection::where('page_id', Page::Attractions->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->sectionable;
+        $sections = OrderedSection::where('page_id', Page::Attractions->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->full_section;
 
-        return Inertia::render('Client/ManageablePages/Attractions', compact('contentSections'));
+        return Inertia::render('Client/ManageablePages/Attractions', compact('sections'));
     }
 
 
     public function beekeeping()
     {
-        $contentSections = OrderedSection::where('page_id', Page::Beekeeping->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->sectionable;
+        $sections = OrderedSection::where('page_id', Page::Beekeeping->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->full_section;
 
 
-        return Inertia::render('Client/ManageablePages/Beekeeping', compact('contentSections'));
+        return Inertia::render('Client/ManageablePages/Beekeeping', compact('sections'));
     }
 
 
     public function contact()
     {
-        $contentSections = OrderedSection::where('page_id', Page::Contact->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->sectionable;
+        $sections = OrderedSection::where('page_id', Page::Contact->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->full_section;
 
 
-        return Inertia::render('Client/ManageablePages/Contact', compact('contentSections'));
+        return Inertia::render('Client/ManageablePages/Contact', compact('sections'));
     }
 
 
     public function gallery()
     {
         $photos = Photo::all();
-        $gallerySections = OrderedSection::where('page_id', Page::Gallery->value)->where('sectionable_type', GallerySection::class)->orderBy('order')->get()->map->sectionable->load('page')->load('photos');
+        $sections = OrderedSection::with(['page', 'sectionable.photos'])->where('page_id', Page::Gallery->value)->where('sectionable_type', GallerySection::class)->orderBy('order')->get()->map->full_section;
 
-        return Inertia::render('Client/ManageablePages/Gallery', compact('photos', 'gallerySections'));
+        return Inertia::render('Client/ManageablePages/Gallery', compact('photos', 'sections'));
     }
 }
