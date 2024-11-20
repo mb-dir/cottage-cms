@@ -16,7 +16,7 @@ class ManagerController extends Controller
 {
     public function about()
     {
-        $contentSections = ContentSection::where('page_id', Page::MainPage->value)->get();
+        $contentSections = OrderedSection::where('page_id', Page::MainPage->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->sectionable;
 
         return Inertia::render('Client/ManageablePages/MainPage', compact('contentSections'));
     }
@@ -24,7 +24,7 @@ class ManagerController extends Controller
 
     public function attractions()
     {
-        $contentSections = ContentSection::where('page_id', Page::Attractions->value)->get();
+        $contentSections = OrderedSection::where('page_id', Page::Attractions->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->sectionable;
 
         return Inertia::render('Client/ManageablePages/Attractions', compact('contentSections'));
     }
@@ -32,7 +32,7 @@ class ManagerController extends Controller
 
     public function beekeeping()
     {
-        $contentSections = ContentSection::where('page_id', Page::Beekeeping->value)->get();
+        $contentSections = OrderedSection::where('page_id', Page::Beekeeping->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->sectionable;
 
 
         return Inertia::render('Client/ManageablePages/Beekeeping', compact('contentSections'));
@@ -51,8 +51,7 @@ class ManagerController extends Controller
     public function gallery()
     {
         $photos = Photo::all();
-        $gallerySections = GallerySection::all()->where('page_id', Page::Gallery->value)->load('page')->load('photos');
-
+        $gallerySections = OrderedSection::where('page_id', Page::Gallery->value)->where('sectionable_type', GallerySection::class)->orderBy('order')->get()->map->sectionable->load('page')->load('photos');
 
         return Inertia::render('Client/ManageablePages/Gallery', compact('photos', 'gallerySections'));
     }
