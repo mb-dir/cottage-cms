@@ -15,7 +15,7 @@ class GallerySectionController extends Controller
     {
         // Remove the corresponding OrderedSection entry
         OrderedSection::where('sectionable_type', GallerySection::class)
-            ->where('sectionable_id', $gallerySection->id)
+            ->where('sectionable_id', $gallerySection->id)->first()
             ->delete();
 
         $gallerySection->delete();

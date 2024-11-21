@@ -15,8 +15,7 @@ class ContentSectionController extends Controller
     {
         // Remove the corresponding OrderedSection entry
         OrderedSection::where('sectionable_type', ContentSection::class)
-            ->where('sectionable_id', $contentSection->id)
-            ->delete();
+            ->where('sectionable_id', $contentSection->id)->first()->delete();
 
         $contentSection->delete();
 

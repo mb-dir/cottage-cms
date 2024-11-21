@@ -3,10 +3,13 @@
 namespace App\Models;
 
 
+use App\Observers\OrderedSectionObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
+#[ObservedBy([OrderedSectionObserver::class])]
 class OrderedSection extends Model
 {
     use HasFactory;
