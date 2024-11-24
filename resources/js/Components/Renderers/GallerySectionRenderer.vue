@@ -67,11 +67,27 @@
     cursor: pointer;
     border: 2px solid #ddd;
     transition: transform 0.3s ease;
-    max-height: 200px;
+    height: 200px;
     object-fit: cover;
   }
 
   .image-item:hover {
     transform: scale(1.05);
+  }
+
+  @media (max-width: 992px) {
+    .image-grid {
+      grid-template-columns: repeat(3, minmax(150px, 1fr));
+    }
+  }
+
+  @media (max-width: 768px) {
+    .image-grid {
+      grid-template-columns: repeat(2, minmax(125px, 1fr));
+    }
+
+    .image-item {
+      height: 150px;
+    }
   }
 </style>

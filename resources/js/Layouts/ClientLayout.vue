@@ -59,8 +59,9 @@
     object-fit: cover;
   }
 
-  @media (min-width: 992px) {
-    max-width: 1600px;
-    padding: 12px;
+  @media (max-width: 992px) {
+    .swiper__slide img {
+      height: 450px;
+    }
   }
 </style>

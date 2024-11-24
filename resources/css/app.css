@@ -51,6 +51,21 @@ a {
   list-style-position: inside;
 }
 
+.section ul li, .section ol li {
+  margin-bottom: 4px;
+}
+
+@media (max-width: 576px) {
+  .section {
+    padding: 8px;
+    width: 98%;
+  }
+
+  .container {
+    width: 100%;
+  }
+}
+
 :root {
   --color-bittersweet: #ef6461ff; /* A reddish tone */
   --color-atomic-tangerine: #ea8c62ff; /* A light orange */

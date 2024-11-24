@@ -37,4 +37,17 @@
   .footer__bottom {
     text-align: center;
   }
+
+  @media (max-width: 992px) {
+    .footer__top {
+      flex-direction: column;
+      text-align: center;
+      height: 100%;
+    }
+
+    .footer__map {
+      width: 100%;
+      height: 300px;
+    }
+  }
 </style>

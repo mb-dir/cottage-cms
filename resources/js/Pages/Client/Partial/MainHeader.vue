@@ -45,4 +45,14 @@
     text-decoration: none;
     color: var(--color-earth-dark-yellow);
   }
+
+  @media (max-width: 768px) {
+    .logo {
+      width: 96px;
+    }
+
+    .main-header {
+      height: 64px;
+    }
+  }
 </style>
