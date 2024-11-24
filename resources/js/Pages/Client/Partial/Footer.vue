@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <div class="footer__top">
+    <div class="footer__top container">
       <address>
         <p>Adres: Brzeziny 393, 39-111 Brzeziny</p>
         <p>Informacja i rezerwacja: Gosia tel. 600 538 513</p>
@@ -16,12 +16,17 @@
   </footer>
 </template>
 
-<style>
+<style scoped>
+  .footer {
+    background: white;
+  }
+
   .footer__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 250px;
+    padding: 24px 0;
   }
 
   .footer__map {

@@ -40,19 +40,17 @@
 
 <style>
   .clientLayout {
-    max-width: 1280px;
     min-height: 100vh;
     margin: 0 auto;
-    padding: 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 24px;
-    background: white;
   }
 
   .clientLayout__content {
     text-align: center;
+    border-bottom: 4px solid var(--color-earth-yellow);
+    padding-bottom: 24px;
   }
 
   .swiper__slide img {

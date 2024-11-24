@@ -37,7 +37,7 @@
       @hide="onHide"
     ></vue-easy-lightbox>
   </div>
-  <section>
+  <section class="section">
     <h2>{{ section.title }}</h2>
     <p>{{ section.content }}</p>
     <div v-if="section.photos?.length" class="image-grid">

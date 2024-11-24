@@ -19,6 +19,9 @@
 <style scoped>
   .nav {
     display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
   }
 
   .nav__list {
