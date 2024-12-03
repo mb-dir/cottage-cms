@@ -9,6 +9,7 @@ use App\Models\ContentSection;
 use App\Models\GallerySection;
 use App\Models\OrderedSection;
 use App\Models\Photo;
+use App\Services\CalendarService;
 use Inertia\Inertia;
 
 
@@ -39,12 +40,13 @@ class ManagerController extends Controller
     }
 
 
-    public function contact()
+    public function contact(CalendarService $calendarService)
     {
         $sections = OrderedSection::where('page_id', Page::Contact->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->full_section;
 
+        $calendar = $calendarService->getCalendar();
 
-        return Inertia::render('Client/ManageablePages/Contact', compact('sections'));
+        return Inertia::render('Client/ManageablePages/Contact', compact('sections', 'calendar'));
     }
 
 
