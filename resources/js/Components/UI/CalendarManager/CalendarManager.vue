@@ -32,6 +32,7 @@
 </script>
 
 <template>
+  <h2>Zarządzaj rezerwacjami</h2>
   <form class="calendar" @submit.prevent="onSubmit">
     <swiper-container
       :centered-slides="true"
@@ -41,7 +42,7 @@
       <swiper-slide v-for="month in calendar">
         <div class="calendar__month">
           <span class="calendar__name">
-            {{ month.name }}
+            {{ month.name }} - {{ month.year }}
           </span>
           <div class="calendar__grid">
             <label v-for="day in month.days" :class="{'calendar__day-available': day.available}" class="calendar__day">

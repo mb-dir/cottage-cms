@@ -14,9 +14,9 @@
 
 <template>
   <AdminLayout>
+    <CalendarManager :calendar :reservedDays />
     <ContentSectionForm />
     <SectionsGrid :sections />
-    <CalendarManager :calendar :reservedDays />
 
     <PreviewRenderer :src="route('client.contact.index')" />
   </AdminLayout>
