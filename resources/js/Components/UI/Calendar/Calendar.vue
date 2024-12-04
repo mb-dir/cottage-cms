@@ -127,4 +127,24 @@
   .calendar__day-reserved {
     background: var(--color-red-inactive);
   }
+
+  @media (max-width: 768px) {
+    .calendar {
+      width: 500px;
+    }
+
+    .calendar__grid {
+      grid-template-columns: repeat(5, 80px);
+    }
+  }
+
+  @media (max-width: 576px) {
+    .calendar {
+      width: 90%;
+    }
+
+    .calendar__grid {
+      grid-template-columns: repeat(3, 80px);
+    }
+  }
 </style>
