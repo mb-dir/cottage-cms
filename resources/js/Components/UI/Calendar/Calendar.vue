@@ -46,7 +46,7 @@
       <swiper-slide v-for="month in calendar">
         <div class="calendar__month">
           <span class="calendar__name">
-            {{ month.name }}
+            {{ month.name }} - {{ month.year }}
           </span>
           <div class="calendar__grid">
             <div v-for="day in month.days" :class="{'calendar__day-reserved': day.is_reserved}" class="calendar__day">

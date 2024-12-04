@@ -47,6 +47,7 @@ class CalendarService
             $firstDayOfMonth = strtotime("first day of +" . $i . " months");
             $daysInMonth = date("t", $firstDayOfMonth); // Total days in the current month
             $monthDays = [];
+            $year = '';
 
             // Loop through all days in the month
             for ($d = 0; $d < $daysInMonth; $d++) {
@@ -54,6 +55,8 @@ class CalendarService
 
                 $dayNameEnglish = date("l", $dayTimestamp);
                 $dayNamePolish = $polishDays[$dayNameEnglish] ?? $dayNameEnglish;
+
+                $year = date('Y', $dayTimestamp);
 
                 $monthDays[] = [
                     'name' => $dayNamePolish,
@@ -64,6 +67,7 @@ class CalendarService
 
             // Add this month to the array
             $months[] = [
+                'year' => $year,
                 'name' => $polishMonthName,
                 'days' => $monthDays,
             ];
