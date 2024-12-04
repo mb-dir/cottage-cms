@@ -1,7 +1,10 @@
 <script setup>
   import { register } from 'swiper/element/bundle';
+  import Button from '../Button.vue';
+  import { useForm } from '@inertiajs/vue3';
 
-  defineProps({ calendar: { type: Array, required: true } });
+  const props = defineProps({ calendar: { type: Array, required: true }, reservedDays: { type: Array, required: true } });
+
   register();
   const months = [
     'January',
@@ -19,10 +22,17 @@
   ];
 
   register();
+
+  const form = useForm({ reservedDays: props.reservedDays });
+
+  function onSubmit() {
+    form.post(route('admin.calendar.store'), { preserveState: false });
+  }
+
 </script>
 
 <template>
-  <div class="calendar">
+  <form class="calendar" @submit.prevent="onSubmit">
     <swiper-container
       :centered-slides="true"
       :navigation="true"
@@ -34,23 +44,25 @@
             {{ month.name }}
           </span>
           <div class="calendar__grid">
-            <div v-for="day in month.days" :class="{'calendar__day-reserved': day.is_reserved}" class="calendar__day">
+            <label v-for="day in month.days" :class="{'calendar__day-available': day.available}" class="calendar__day">
               {{ day.name }} {{ day.date }}
-            </div>
+              <input v-model="form.reservedDays" :value="day.date" type="checkbox">
+            </label>
           </div>
         </div>
       </swiper-slide>
     </swiper-container>
-  </div>
+    <Button>Zapisz</Button>
+  </form>
 
 </template>
 
 <style scoped>
   .calendar {
-    width: 600px;
+    width: 800px;
     margin: 0 auto;
-    border: 2px solid var(--color-earth-yellow);
     padding: 12px;
+    text-align: center;
   }
 
   .calendar__name {
@@ -66,20 +78,17 @@
   .calendar__grid {
     display: grid;
     justify-content: center;
-    grid-template-columns: repeat(6, 80px);
+    grid-template-columns: repeat(6, 90px);
     gap: 6px;
+    margin-bottom: 12px;
   }
 
   .calendar__day {
-    border: 1px solid var(--color-wheat);
+    border: 1px solid white;
     font-size: 12px;
-    height: 60px;
+    height: 70px;
     padding: 6px;
     text-align: center;
-    background: green;
   }
 
-  .calendar__day-reserved {
-    background: red;
-  }
 </style>

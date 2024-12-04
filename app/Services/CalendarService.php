@@ -3,6 +3,10 @@
 namespace App\Services;
 
 
+use App\Models\ReservedDay;
+use Carbon\Carbon;
+
+
 class CalendarService
 {
     public function getCalendar(): array
@@ -54,7 +58,7 @@ class CalendarService
                 $monthDays[] = [
                     'name' => $dayNamePolish,
                     'date' => date("d.m.Y", $dayTimestamp),
-                    'available' => $d > 10,
+                    'is_reserved' => $this->getReservedDays()->contains(date("d.m.Y", $dayTimestamp)),
                 ];
             }
 
@@ -66,5 +70,20 @@ class CalendarService
         }
 
         return $months;
+    }
+
+
+    public function getReservedDays()
+    {
+        $reservedDaysCollection = ReservedDay::all()->map(function ($day) {
+            $day->date = Carbon::createFromFormat('Y-m-d', $day->date)->format('d.m.Y');
+
+            return $day;
+        });
+
+
+        return $reservedDaysCollection->map(function ($day) {
+            return $day->date;
+        });
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Calendar\CalendarController;
 use App\Http\Controllers\Admin\ManageablePages\GalleryController;
 use App\Http\Controllers\Admin\ManageablePages\ManagerController;
 use App\Http\Controllers\Admin\PhotoController;
@@ -62,6 +63,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/manageable/contact', [
         ManagerController::class, 'contact',
     ])->name('admin.contact.index');
+
+    Route::post('/admin/calendar', [CalendarController::class, 'store'])->name('admin.calendar.store');
 });
 
 
