@@ -77,4 +77,6 @@ a {
   --color-wheat: #e6cea7ff; /* Light beige or wheat */
   --color-antiflash-white: #F7F8FA; /* Very light grey/white */
   --color-alabaster: #e0dfd5ff; /* A soft grayish-white */
+  --color-red-inactive: #ef233c;
+  --color-green-active: #27a300;
 }

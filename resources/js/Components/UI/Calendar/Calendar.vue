@@ -19,14 +19,29 @@
   ];
 
   register();
+
+  const params = {
+    navigation: true,
+    centeredSlides: true,
+    sliderPerView: true,
+    injectStyles: [
+      `
+       .swiper-button-next, .swiper-button-prev {
+        color: var(--color-earth-yellow);
+      }
+      `,
+    ],
+  };
 </script>
 
 <template>
   <div class="calendar">
+    <div class="calendar__legend">
+      <div class="legend-symbol legend-symbol--available">Dostępne</div>
+      <div class="legend-symbol legend-symbol--reserved">Zajęte</div>
+    </div>
     <swiper-container
-      :centered-slides="true"
-      :navigation="true"
-      :slides-per-view="1"
+      v-bind="params"
     >
       <swiper-slide v-for="month in calendar">
         <div class="calendar__month">
@@ -49,18 +64,47 @@
   .calendar {
     width: 600px;
     margin: 0 auto;
-    border: 2px solid var(--color-earth-yellow);
-    padding: 12px;
+    padding-top: 12px;
+    position: relative;
+  }
+
+  .calendar__legend {
+    position: absolute;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .legend-symbol {
+    display: flex;
+    align-items: center;
+    gap: 4px
+  }
+
+  .legend-symbol--available::before, .legend-symbol--reserved::before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+  }
+
+  .legend-symbol--available::before {
+    background: var(--color-green-active);
+  }
+
+  .legend-symbol--reserved::before {
+    background: var(--color-red-inactive);
   }
 
   .calendar__name {
     font-size: 18px;
+    font-family: "Sansita Swashed", sans-serif;
+    color: var(--color-earth-dark-yellow);
   }
 
   .calendar__month {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 24px;
   }
 
   .calendar__grid {
@@ -76,10 +120,11 @@
     height: 60px;
     padding: 6px;
     text-align: center;
-    background: green;
+    background: var(--color-green-active);
+    color: white;
   }
 
   .calendar__day-reserved {
-    background: red;
+    background: var(--color-red-inactive);
   }
 </style>

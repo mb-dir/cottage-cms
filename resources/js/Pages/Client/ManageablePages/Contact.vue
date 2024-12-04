@@ -14,6 +14,9 @@
       <ContentSectionRenderer v-for="section in sections" :section />
     </div>
 
-    <Calendar :calendar />
+    <section class="section">
+      <h3>Sprawdź dostępne terminy</h3>
+      <Calendar :calendar />
+    </section>
   </ClientLayout>
 </template>
