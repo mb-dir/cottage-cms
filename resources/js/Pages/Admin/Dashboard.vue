@@ -3,10 +3,13 @@
 </script>
 
 <template>
-  <AdminLayout>dupa</AdminLayout>
+  <AdminLayout>
+    <h2 class="title">Panel administratora Chaty Drwala</h2>
+  </AdminLayout>
 </template>
 
-<style>
-
-
+<style scoped>
+  .title {
+    text-align: center;
+  }
 </style>
