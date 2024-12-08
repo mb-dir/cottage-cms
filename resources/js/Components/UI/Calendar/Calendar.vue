@@ -2,7 +2,6 @@
   import { register } from 'swiper/element/bundle';
 
   defineProps({ calendar: { type: Array, required: true } });
-  register();
   const months = [
     'January',
     'February',
@@ -23,7 +22,6 @@
   const params = {
     navigation: true,
     centeredSlides: true,
-    sliderPerView: true,
     injectStyles: [
       `
        .swiper-button-next, .swiper-button-prev {

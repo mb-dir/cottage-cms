@@ -4,6 +4,28 @@
   import Footer from '../Pages/Client/Partial/Footer.vue';
 
   register();
+  const params = {
+    navigation: true,
+    pagination: true,
+    autoplay: { delay: 4000 },
+    injectStyles: [
+      `
+       .swiper-button-next, .swiper-button-prev {
+        color: var(--color-earth-yellow);
+      }
+      .swiper-pagination-bullet {
+        background: var(--color-earth-yellow);
+        width: 10px;
+        height: 10px;
+        border: 2px solid black;
+        opacity: 1;
+      }
+      .swiper-pagination-bullet-active {
+        background: var(--color-atomic-tangerine);
+      }
+      `,
+    ],
+  };
 </script>
 
 <template>
@@ -11,10 +33,7 @@
     <MainHeader />
     <div class="swiper">
       <swiper-container
-        :autoplay="{delay: 4000}"
-        :centered-slides="true"
-        :pagination="true"
-        :slides-per-view="1"
+        v-bind="params"
       >
         <swiper-slide>
           <div class="swiper__slide">

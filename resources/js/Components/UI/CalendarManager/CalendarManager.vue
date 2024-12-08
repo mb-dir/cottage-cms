@@ -4,8 +4,7 @@
   import { useForm } from '@inertiajs/vue3';
 
   const props = defineProps({ calendar: { type: Array, required: true }, reservedDays: { type: Array, required: true } });
-
-  register();
+  
   const months = [
     'January',
     'February',
