@@ -5,6 +5,7 @@ namespace Database\Seeders;
 
 use App\Models\Photo;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 
 
@@ -15,6 +16,8 @@ class PhotoSeeder extends Seeder
      */
     public function run(): void
     {
+        Artisan::call('storage:clean');
+
         $sourceDir = public_path('photos/seeder');
         $targetDir = public_path('storage/photos');
 
