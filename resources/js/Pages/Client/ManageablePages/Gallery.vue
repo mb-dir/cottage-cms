@@ -10,6 +10,10 @@
 
 <template>
   <ClientLayout>
+    <header>
+      <h2>Galeria</h2>
+      <p>Zapraszamy do obejrzenia zdjęć naszego Domku!</p>
+    </header>
     <div v-if="sections.length > 0">
       <GallerySectionRenderer v-for="section in sections" :section />
     </div>

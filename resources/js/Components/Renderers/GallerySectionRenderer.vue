@@ -38,8 +38,8 @@
     ></vue-easy-lightbox>
   </div>
   <section class="section">
-    <h2>{{ section.title }}</h2>
-    <p>{{ section.content }}</p>
+    <h3>{{ section.title }}</h3>
+    <div v-html="section.content" />
     <div v-if="section.photos?.length" class="image-grid">
       <img
         v-for="(photo, index) in section.photos"
