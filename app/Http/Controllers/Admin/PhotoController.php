@@ -19,7 +19,7 @@ class PhotoController extends Controller
             foreach ($files as $file) {
                 if ($file->isValid()) {
 
-                    $filePath = $file->store('storage/photos', 'public');
+                    $filePath = $file->store('/photos', 'public');
 
                     Photo::create([
                         'src' => $filePath,
