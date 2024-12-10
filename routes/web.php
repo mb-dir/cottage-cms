@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     })->name('admin.dashboard');
 
     Route::get('admin/photo', [PhotoController::class, 'index'])->name('admin.photo.index');
-    Route::post('admin/photo', [PhotoController::class, 'create'])->name('admin.photo.store');
+    Route::post('admin/photo', [PhotoController::class, 'store'])->name('admin.photo.store');
     Route::delete('admin/photo/{photo}', [PhotoController::class, 'destroy'])->name('admin.photo.destroy');
 
     Route::post('admin/gallery-section', [GallerySectionController::class, 'store'])->name('admin.gallery-section.store');

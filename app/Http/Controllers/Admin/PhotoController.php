@@ -6,12 +6,34 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
 
 
 class PhotoController extends Controller
 {
-    public function create(Request $request)
+    public function destroy(Photo $photo)
+    {
+        $filePath = storage_path('app/public/' . $photo->getRawOriginal('src'));
+        
+        if (File::exists($filePath)) {
+            File::delete($filePath);
+        }
+        $photo->delete();
+
+        return redirect()->back()->with("message", "Zdjęcie zostało usunięte");
+    }
+
+
+    public function index()
+    {
+        $photos = Photo::all();
+
+        return Inertia::render('Admin/Photo/Index', compact('photos'));
+    }
+
+
+    public function store(Request $request)
     {
         $files = $request->file('files');
 
@@ -32,21 +54,5 @@ class PhotoController extends Controller
         }
 
         return redirect()->back()->with("error", "Wystąpił błąd");
-    }
-
-
-    public function destroy(Photo $photo)
-    {
-        $photo->delete();
-
-        return redirect()->back()->with("message", "Zdjęcie zostało usunięte");
-    }
-
-
-    public function index()
-    {
-        $photos = Photo::all();
-
-        return Inertia::render('Admin/Photo/Index', compact('photos'));
     }
 }
