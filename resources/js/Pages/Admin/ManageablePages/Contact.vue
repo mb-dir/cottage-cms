@@ -2,7 +2,7 @@
   import AdminLayout from '../../../Layouts/AdminLayout.vue';
   import ContentSectionForm from '../../../Components/Forms/ContentSectionForm.vue';
   import SectionsGrid from '../Partial/SectionsGrid.vue';
-  import PreviewRenderer from '../../../Components/Renderers/PreviewRenderer.vue';
+  import PreviewRenderer from '../../../Components/Renderers/PreviewRenderer/PreviewRenderer.vue';
   import CalendarManager from '../../../Components/UI/CalendarManager/CalendarManager.vue';
 
   defineProps({
@@ -18,6 +18,6 @@
     <ContentSectionForm />
     <SectionsGrid :sections />
 
-    <PreviewRenderer :src="route('client.contact.index')" />
+    <PreviewRenderer :sections :src="route('client.contact.index')" />
   </AdminLayout>
 </template>

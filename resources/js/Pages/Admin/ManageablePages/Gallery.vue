@@ -7,7 +7,7 @@
   import Textarea from '../../../Components/Forms/Controls/Textarea.vue';
   import PhotoGridWithCheckboxes from '../../../Components/UI/PhotoGridWithCheckboxes.vue';
   import SectionsGrid from '../Partial/SectionsGrid.vue';
-  import PreviewRenderer from '../../../Components/Renderers/PreviewRenderer.vue';
+  import PreviewRenderer from '../../../Components/Renderers/PreviewRenderer/PreviewRenderer.vue';
 
   defineProps({
     photos: { required: true, type: Array },
@@ -51,7 +51,7 @@
 
     <SectionsGrid :photos :sections />
 
-    <PreviewRenderer :src="route('client.gallery.index')" />
+    <PreviewRenderer :sections :src="route('client.gallery.index')" />
   </AdminLayout>
 </template>
 
