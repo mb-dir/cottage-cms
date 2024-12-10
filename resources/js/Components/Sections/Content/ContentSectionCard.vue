@@ -54,7 +54,7 @@
   </Modal>
   <div class="section-card" v-bind="$attrs">
     <h3 class="section-card__title">{{ section.title }}</h3>
-    <p class="section-card__content" v-html="section.content" />
+    <div class="section-card__content" v-html="section.content" />
 
     <div class="section-card__buttons">
       <Button @click="openModal">Edytuj</Button>

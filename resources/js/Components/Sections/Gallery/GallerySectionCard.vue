@@ -14,7 +14,7 @@
   const form = useForm({
     title: props.section.title,
     content: props.section.content,
-    // photos from section have pivot cuz of loaded relation, photos passed as props(represents all available photos to add) have to pivot key, and that was the reason why in PhotoGridWithCheckboxes v-model didn't match any element
+    // photos from section have pivot cuz of loaded relation, photos passed as props(represents all available photos to add) have pivot key, and that was the reason why in PhotoGridWithCheckboxes v-model didn't match any element
     photos: props.section.photos?.map(({ pivot, ...rest }) => rest),
   });
 
@@ -53,7 +53,7 @@
   </Modal>
   <div class="section-card">
     <h3 class="section-card__title">{{ section.title }}</h3>
-    <p class="section-card__content">{{ section.content }}</p>
+    <div class="section-card__content" v-html="section.content" />
 
     <div class="section-card__buttons">
       <Button @click="openModal">Edytuj</Button>
