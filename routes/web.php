@@ -64,6 +64,10 @@ Route::middleware('auth')->group(function () {
         ManagerController::class, 'contact',
     ])->name('admin.contact.index');
 
+    Route::post('/admin/manageable/photos', [
+        ManagerController::class, 'storeSwiperPhotos',
+    ])->name('admin.manageable-photos.store');
+
     Route::post('/admin/calendar', [CalendarController::class, 'store'])->name('admin.calendar.store');
 });
 

@@ -8,8 +8,10 @@ use App\Http\Controllers\Controller;
 use App\Models\ContentSection;
 use App\Models\GallerySection;
 use App\Models\OrderedSection;
+use App\Models\Page as PageModel;
 use App\Models\Photo;
 use App\Services\CalendarService;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 
@@ -63,5 +65,18 @@ class ManagerController extends Controller
 
 
         return Inertia::render('Admin/ManageablePages/Gallery', compact('photos', 'sections'));
+    }
+
+
+    public function storeSwiperPhotos(Request $request)
+    {
+        $photos = $request->input('photos');
+        $page_id = $request->input('page_id');
+
+        $page = PageModel::with('photos')->find($page_id);
+
+        $page->photos()->sync(array_column($photos, 'id'));
+
+        return redirect()->back()->with('message', "Swiper został zaktualizowany");
     }
 }

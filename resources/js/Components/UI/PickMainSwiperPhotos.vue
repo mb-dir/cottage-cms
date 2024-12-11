@@ -20,10 +20,15 @@
 
   const form = useForm({
     photos: [],
+    page_id: currentPageId,
   });
 
   function openModal() {
     htmlModal.value.show();
+  }
+
+  function onSubmit() {
+    form.post(route('admin.manageable-photos.store'));
   }
 </script>
 
@@ -31,7 +36,7 @@
   <Button @click="openModal">Wybierz zdjęcia dla Swipera na stronie</Button>
 
   <Modal ref="htmlModal">
-    <form>
+    <form @submit.prevent="onSubmit">
       <h2 class="title">Wybrane zdjęcia będą wyświetlane na danej stronie w głównym swiperze</h2>
 
       <PhotoGridWithCheckboxes v-model="form.photos" :photos />
