@@ -3,13 +3,13 @@
   import { useForm } from '@inertiajs/vue3';
   import Button from '../../../Components/UI/Button.vue';
 
-  const props = defineProps({ address: { type: Object, required: true } });
+  const props = defineProps({ address: { type: Object } });
 
   const form = useForm({
-    map_src: props.address.map_src || '',
-    coordinates: props.address.coordinates || '',
-    address: props.address.address || '',
-    phone: props.address.phone || '',
+    map_src: props.address?.map_src || '',
+    coordinates: props.address?.coordinates || '',
+    address: props.address?.address || '',
+    phone: props.address?.phone || '',
   });
 
   function handleSubmit() {

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 
 use App\Facades\MenuFacade;
+use App\Models\AddressInformation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
@@ -36,6 +37,7 @@ class HandleInertiaRequests extends Middleware
             'client_menu' => MenuFacade::getClientMenu(),
             'errors' => fn() => $request->session()->get('errors') ? $request->session()->get('errors')->getBag('default')->getMessages() : [],
             'messages' => fn() => $request->session()->get('message') ? collect($request->session()->get('message')) : [],
+            'address_info' => AddressInformation::all()->first(),
         ];
     }
 
