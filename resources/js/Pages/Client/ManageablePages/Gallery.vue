@@ -4,12 +4,13 @@
 
   defineProps({
     sections: { required: true, type: Array },
+    swiperPhotos: { required: true, type: Array },
   });
 
 </script>
 
 <template>
-  <ClientLayout>
+  <ClientLayout :swiperPhotos>
     <header>
       <h2>Galeria</h2>
       <p>Zapraszamy do obejrzenia zdjęć naszego Domku!</p>

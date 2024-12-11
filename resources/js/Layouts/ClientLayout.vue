@@ -3,6 +3,10 @@
   import MainHeader from '../Pages/Client/Partial/MainHeader.vue';
   import Footer from '../Pages/Client/Partial/Footer.vue';
 
+  defineProps({
+    swiperPhotos: { required: true, type: Array },
+  });
+
   register();
   const params = {
     navigation: true,
@@ -35,18 +39,11 @@
       <swiper-container
         v-bind="params"
       >
-        <swiper-slide>
+        <swiper-slide v-for="(photo, index) in swiperPhotos">
           <div class="swiper__slide">
-            <img alt="" src="/photos/m1.webp"></div>
+            <img :alt="`Slider photo ${index}`" :src="photo.src"></div>
         </swiper-slide>
-        <swiper-slide>
-          <div class="swiper__slide">
-            <img alt="" src="/photos/m3.webp"></div>
-        </swiper-slide>
-        <swiper-slide>
-          <div class="swiper__slide">
-            <img alt="" src="/photos/p2.webp"></div>
-        </swiper-slide>
+
       </swiper-container>
     </div>
 

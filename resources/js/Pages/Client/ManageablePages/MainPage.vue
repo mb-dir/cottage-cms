@@ -2,12 +2,12 @@
   import ClientLayout from '../../../Layouts/ClientLayout.vue';
   import ContentSectionRenderer from '../../../Components/Renderers/ContentSectionRenderer.vue';
 
-  defineProps({ sections: { type: Array, required: true } });
+  defineProps({ sections: { type: Array, required: true }, swiperPhotos: { required: true, type: Array } });
 
 </script>
 
 <template>
-  <ClientLayout>
+  <ClientLayout :swiperPhotos>
     <h2>Chata Drwala</h2>
     <div v-if="sections.length > 0">
       <ContentSectionRenderer v-for="section in sections" :section />

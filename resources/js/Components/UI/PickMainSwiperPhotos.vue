@@ -13,13 +13,11 @@
   const adminMenu = usePage().props.admin_menu;
 
   const currentPageId = computed(() => {
-    const foundItem = adminMenu.find((item) => item.route_admin_name === 'admin.attractions.index');
+    const foundItem = adminMenu.find((item) => item.route_admin_name === route().current());
     return foundItem ? foundItem.id : null;
   });
 
   const htmlModal = ref(null);
-
-  console.log(props.swiperPhotos);
 
   const form = useForm({
     photos: props.swiperPhotos || [],
