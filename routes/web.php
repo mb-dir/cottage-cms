@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AddressController;
 use App\Http\Controllers\Admin\Calendar\CalendarController;
 use App\Http\Controllers\Admin\ManageablePages\GalleryController;
 use App\Http\Controllers\Admin\ManageablePages\ManagerController;
@@ -26,9 +27,13 @@ Route::get('/kontakt', [\App\Http\Controllers\Client\ManageablePages\ManagerCont
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/admin/dashboard', function () {
+    Route::get('admin/dashboard', function () {
         return Inertia::render('Admin/Dashboard');
     })->name('admin.dashboard');
+
+    Route::get('admin/address', [AddressController::class, 'index'])->name('admin.address.index');
+
+    Route::post('admin/address', [AddressController::class, 'store'])->name('admin.address.store');
 
     Route::get('admin/photo', [PhotoController::class, 'index'])->name('admin.photo.index');
     Route::post('admin/photo', [PhotoController::class, 'store'])->name('admin.photo.store');

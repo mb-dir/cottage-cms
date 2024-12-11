@@ -12,6 +12,10 @@
       <li>
         <Link :class="{'admin-nav__link--active': route().current('admin.photo.index')}" :href="route('admin.photo.index')" class="admin-nav__link">Zdjęcia</Link>
       </li>
+
+      <li>
+        <Link :class="{'admin-nav__link--active': route().current('admin.address.index')}" :href="route('admin.address.index')" class="admin-nav__link">Dane kontaktowe</Link>
+      </li>
     </ul>
     <p class="admin-nav__title">Strony zarządzalne</p>
     <ul class="admin-nav__menu">
