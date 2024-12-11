@@ -22,10 +22,10 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'map_src' => ['string'],
-            'phone' => ['string'],
-            'coordinates' => ['string'],
-            'address' => ['string'],
+            'map_src' => ['string', 'nullable'],
+            'phone' => ['string', 'nullable'],
+            'coordinates' => ['string', 'nullable'],
+            'address' => ['string', 'nullable'],
         ]);
 
         AddressInformation::updateOrCreate(

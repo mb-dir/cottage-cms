@@ -13,10 +13,10 @@ return new class extends Migration {
     {
         Schema::create('address_information', function (Blueprint $table) {
             $table->id();
-            $table->text('map_src');
-            $table->string('coordinates');
-            $table->string('address');
-            $table->string('phone');
+            $table->text('map_src')->nullable();
+            $table->string('coordinates')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
             $table->timestamps();
         });
     }
