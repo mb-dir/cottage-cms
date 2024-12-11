@@ -8,10 +8,12 @@
   import PhotoGridWithCheckboxes from '../../../Components/UI/PhotoGridWithCheckboxes.vue';
   import SectionsGrid from '../Partial/SectionsGrid.vue';
   import PreviewRenderer from '../../../Components/Renderers/PreviewRenderer/PreviewRenderer.vue';
+  import PickMainSwiperPhotos from '../../../Components/UI/PickMainSwiperPhotos.vue';
 
   defineProps({
     photos: { required: true, type: Array },
     sections: { required: true, type: Array },
+    swiperPhotos: { required: true, type: Array },
   });
 
   const adminMenu = usePage().props.admin_menu;
@@ -50,6 +52,7 @@
     </section>
 
     <SectionsGrid :photos :sections />
+    <PickMainSwiperPhotos :photos :swiperPhotos />
 
     <PreviewRenderer :sections :src="route('client.gallery.index')" />
   </AdminLayout>

@@ -5,21 +5,24 @@
   import PhotoGridWithCheckboxes from './PhotoGridWithCheckboxes.vue';
   import { useForm, usePage } from '@inertiajs/vue3';
 
-  defineProps({
+  const props = defineProps({
     photos: { required: true, type: Array },
+    swiperPhotos: { required: true, type: Array },
   });
 
   const adminMenu = usePage().props.admin_menu;
 
   const currentPageId = computed(() => {
-    const foundItem = adminMenu.find((item) => item.route_admin_name === 'admin.gallery.index');
+    const foundItem = adminMenu.find((item) => item.route_admin_name === 'admin.attractions.index');
     return foundItem ? foundItem.id : null;
   });
 
   const htmlModal = ref(null);
 
+  console.log(props.swiperPhotos);
+
   const form = useForm({
-    photos: [],
+    photos: props.swiperPhotos || [],
     page_id: currentPageId,
   });
 

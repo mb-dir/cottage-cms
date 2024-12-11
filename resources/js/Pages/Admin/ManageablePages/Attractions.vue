@@ -8,6 +8,7 @@
   defineProps({
     sections: { type: Array, required: true },
     photos: { required: true, type: Array },
+    swiperPhotos: { required: true, type: Array },
   });
 </script>
 
@@ -15,7 +16,7 @@
   <AdminLayout>
     <ContentSectionForm />
     <SectionsGrid :sections />
-    <PickMainSwiperPhotos :photos />
+    <PickMainSwiperPhotos :photos :swiperPhotos />
 
     <PreviewRenderer :sections :src="route('client.attractions.index')" />
   </AdminLayout>

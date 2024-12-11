@@ -13,7 +13,10 @@ class Photo extends Model
     use HasFactory;
 
 
-    protected $fillable = ['src', 'is_gallery'];
+    protected $fillable = ['src'];
+
+
+    protected $hidden = ['pivot'];
 
 
     public function getSrcAttribute($value)

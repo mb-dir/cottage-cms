@@ -22,7 +22,9 @@ class ManagerController extends Controller
         $photos = Photo::all();
         $sections = OrderedSection::where('page_id', Page::MainPage->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->full_section;
 
-        return Inertia::render('Admin/ManageablePages/MainPage', compact('sections', 'photos'));
+        $swiperPhotos = PageModel::with('photos')->find(Page::MainPage->value)->photos;
+
+        return Inertia::render('Admin/ManageablePages/MainPage', compact('sections', 'photos', 'swiperPhotos'));
     }
 
 
@@ -30,8 +32,10 @@ class ManagerController extends Controller
     {
         $photos = Photo::all();
         $sections = OrderedSection::where('page_id', Page::Attractions->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->full_section;
+        $swiperPhotos = PageModel::with('photos')->find(Page::Attractions->value)->photos;
 
-        return Inertia::render('Admin/ManageablePages/Attractions', compact('sections', 'photos'));
+
+        return Inertia::render('Admin/ManageablePages/Attractions', compact('sections', 'photos', 'swiperPhotos'));
     }
 
 
@@ -40,8 +44,10 @@ class ManagerController extends Controller
         $photos = Photo::all();
         $sections = OrderedSection::where('page_id', Page::Beekeeping->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->full_section;
 
+        $swiperPhotos = PageModel::with('photos')->find(Page::Beekeeping->value)->photos;
 
-        return Inertia::render('Admin/ManageablePages/Beekeeping', compact('sections', 'photos'));
+
+        return Inertia::render('Admin/ManageablePages/Beekeeping', compact('sections', 'photos', 'swiperPhotos'));
     }
 
 
@@ -50,11 +56,13 @@ class ManagerController extends Controller
         $photos = Photo::all();
         $sections = OrderedSection::where('page_id', Page::Contact->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->full_section;
 
+        $swiperPhotos = PageModel::with('photos')->find(Page::Contact->value)->photos;
+
         $calendar = $calendarService->getCalendar();
         $reservedDays = $calendarService->getReservedDays();
 
 
-        return Inertia::render('Admin/ManageablePages/Contact', compact('sections', 'calendar', 'reservedDays', 'photos'));
+        return Inertia::render('Admin/ManageablePages/Contact', compact('sections', 'calendar', 'reservedDays', 'photos', 'swiperPhotos'));
     }
 
 
@@ -63,8 +71,10 @@ class ManagerController extends Controller
         $photos = Photo::all();
         $sections = OrderedSection::with(['page', 'sectionable.photos'])->where('page_id', Page::Gallery->value)->where('sectionable_type', GallerySection::class)->orderBy('order')->get()->map->full_section;
 
+        $swiperPhotos = PageModel::with('photos')->find(Page::Gallery->value)->photos;
 
-        return Inertia::render('Admin/ManageablePages/Gallery', compact('photos', 'sections'));
+
+        return Inertia::render('Admin/ManageablePages/Gallery', compact('photos', 'sections', 'swiperPhotos'));
     }
 
 
