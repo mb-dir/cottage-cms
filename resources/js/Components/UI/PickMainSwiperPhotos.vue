@@ -29,7 +29,7 @@
   }
 
   function onSubmit() {
-    form.post(route('admin.manageable-photos.store'));
+    form.post(route('admin.manageable-photos.store'), { onSuccess: htmlModal.value.close() });
   }
 </script>
 
