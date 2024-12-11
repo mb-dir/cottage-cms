@@ -9,6 +9,7 @@
     sections: { type: Array, required: true },
     calendar: { type: Array, required: true },
     reservedDays: { type: Array, required: true },
+    photos: { required: true, type: Array },
   });
 </script>
 

@@ -3,9 +3,11 @@
   import ContentSectionForm from '../../../Components/Forms/ContentSectionForm.vue';
   import SectionsGrid from '../Partial/SectionsGrid.vue';
   import PreviewRenderer from '../../../Components/Renderers/PreviewRenderer/PreviewRenderer.vue';
+  import PickMainSwiperPhotos from '../../../Components/UI/PickMainSwiperPhotos.vue';
 
   defineProps({
     sections: { type: Array, required: true },
+    photos: { required: true, type: Array },
   });
 
 
@@ -15,6 +17,7 @@
   <AdminLayout>
     <ContentSectionForm />
     <SectionsGrid :sections />
+    <PickMainSwiperPhotos :photos />
 
     <PreviewRenderer :sections :src="route('client.attractions.index')" />
   </AdminLayout>

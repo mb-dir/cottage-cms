@@ -17,38 +17,42 @@ class ManagerController extends Controller
 {
     public function about()
     {
+        $photos = Photo::all();
         $sections = OrderedSection::where('page_id', Page::MainPage->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->full_section;
 
-        return Inertia::render('Admin/ManageablePages/MainPage', compact('sections'));
+        return Inertia::render('Admin/ManageablePages/MainPage', compact('sections', 'photos'));
     }
 
 
     public function attractions()
     {
+        $photos = Photo::all();
         $sections = OrderedSection::where('page_id', Page::Attractions->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->full_section;
 
-        return Inertia::render('Admin/ManageablePages/Attractions', compact('sections'));
+        return Inertia::render('Admin/ManageablePages/Attractions', compact('sections', 'photos'));
     }
 
 
     public function beekeeping()
     {
+        $photos = Photo::all();
         $sections = OrderedSection::where('page_id', Page::Beekeeping->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->full_section;
 
 
-        return Inertia::render('Admin/ManageablePages/Beekeeping', compact('sections'));
+        return Inertia::render('Admin/ManageablePages/Beekeeping', compact('sections', 'photos'));
     }
 
 
     public function contact(CalendarService $calendarService)
     {
+        $photos = Photo::all();
         $sections = OrderedSection::where('page_id', Page::Contact->value)->where('sectionable_type', ContentSection::class)->orderBy('order')->get()->map->full_section;
 
         $calendar = $calendarService->getCalendar();
         $reservedDays = $calendarService->getReservedDays();
 
 
-        return Inertia::render('Admin/ManageablePages/Contact', compact('sections', 'calendar', 'reservedDays'));
+        return Inertia::render('Admin/ManageablePages/Contact', compact('sections', 'calendar', 'reservedDays', 'photos'));
     }
 
 

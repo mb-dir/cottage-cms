@@ -6,6 +6,7 @@
 
   defineProps({
     sections: { type: Array, required: true },
+    photos: { required: true, type: Array },
   });
 </script>
 
