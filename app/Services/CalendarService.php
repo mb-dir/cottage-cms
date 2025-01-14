@@ -5,6 +5,8 @@ namespace App\Services;
 
 use App\Models\ReservedDay;
 use Carbon\Carbon;
+use Exception;
+use InvalidArgumentException;
 
 
 class CalendarService
@@ -89,5 +91,27 @@ class CalendarService
         return $reservedDaysCollection->map(function ($day) {
             return $day->date;
         });
+    }
+
+
+    public function reserveDays(array $days)
+    {
+        if (empty($days)) {
+            throw new InvalidArgumentException('The days array cannot be empty.');
+        }
+
+        try {
+            ReservedDay::truncate();
+            foreach ($days as $day) {
+                $parsedDate = Carbon::createFromFormat('d.m.Y', $day);
+                if (! $parsedDate) {
+                    throw new Exception("Invalid date format: {$day}");
+                }
+                ReservedDay::create(['date' => $parsedDate]);
+            }
+        } catch (Exception $e) {
+            // Re-throwing the exception so the controller can handle it
+            throw new Exception("Failed to reserve days: " . $e->getMessage(), 0, $e);
+        }
     }
 }

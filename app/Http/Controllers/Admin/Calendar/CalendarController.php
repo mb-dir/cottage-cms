@@ -4,25 +4,22 @@ namespace App\Http\Controllers\Admin\Calendar;
 
 
 use App\Http\Controllers\Controller;
-use App\Models\ReservedDay;
-use Carbon\Carbon;
+use App\Services\CalendarService;
+use Exception;
 use Illuminate\Http\Request;
 
 
 class CalendarController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request, CalendarService $calendarService)
     {
-        $reservedDays = $request->input('reservedDays');
-        if (! is_null($reservedDays)) {
-            ReservedDay::truncate();
-            foreach ($reservedDays as $day) {
-                ReservedDay::create(['date' => Carbon::createFromFormat('d.m.Y', $day)]);
-            }
+        try {
+            $reservedDays = $request->input('reservedDays');
+            $calendarService->reserveDays($reservedDays);
 
-            return redirect()->back()->with('message', 'Kalendarz został zaktualizowany');
+            return redirect()->back()->with('message', 'Kalendarz został zaktualizowany pomyślnie.');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Wystąpił nieoczekiwany błąd podczas aktualizacji kalendarza');
         }
-
-        return redirect()->back()->with('message', 'Wystąpił nieoczekiwany błąd podczas aktualizacji kalnendzara');
     }
 }
