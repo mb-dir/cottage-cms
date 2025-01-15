@@ -27,7 +27,7 @@ it('should return twelve-month calendar without any reservation', function () {
     $this->assertFalse($isReserved);
 });
 
-it('should reserve curreny day', function () {
+it('should reserve current day', function () {
     $calendarService = new CalendarService();
 
     $currentDay = now()->format('d.m.Y');
@@ -35,15 +35,9 @@ it('should reserve curreny day', function () {
     $calendarService->reserveDays([$currentDay]);
     $calendar = $calendarService->getCalendar();
 
-    $reservedDay = null;
-    foreach ($calendar as $month) {
-        foreach ($month['days'] as $day) {
-            if ($day['is_reserved']) {
-                $reservedDay = $day;
-                break;
-            }
-        }
-    }
+    $reservedDay = collect($calendar)
+        ->flatMap(fn($month) => $month['days'])
+        ->first(fn($day) => $day['is_reserved']);
 
     $this->assertEquals($currentDay, $reservedDay['date']);
 });
