@@ -47,7 +47,7 @@ const menu = page.props.admin_menu;
       <Button
         class="admin-nav__logout"
         type="delete"
-        @click="router.post('logout')"
+        @click="router.post(route('logout'))"
         >Wyloguj się</Button
       >
     </ul>
