@@ -1,6 +1,5 @@
 <script setup>
 import { Link, usePage } from "@inertiajs/vue3";
-
 import AdminMenu from "../Pages/Admin/Partial/AdminMenu.vue";
 import { computed, watch } from "vue";
 import { toast } from "vue3-toastify";
@@ -10,7 +9,6 @@ const flashMessages = computed(() => ({
   errors: page.props.errors,
   messages: page.props.messages,
 }));
-
 watch(
   flashMessages,
   (value) => {
